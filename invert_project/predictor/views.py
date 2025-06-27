@@ -26,7 +26,7 @@ from django.contrib import messages
 
 model = timm.create_model('vit_base_patch16_224', pretrained=False)
 model.head = torch.nn.Linear(model.head.in_features, 137)
-model.load_state_dict(torch.load('C:/Users/Christian/Desktop/ClassificationInvertebresMarrins/model/model.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('F:/1234/models/model.pth', map_location=torch.device('cpu')))
 model.eval()
 
 # --------------------------
