@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static 'images/fond6.jpg' %}') no-repeat center center; background-size: cover; height: 60vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="hero-content text-center text-white w-100">
+            <h1 class="display-3 fw-bold mb-3">Recherche Scientifique</h1>
+            <p class="lead mb-4">Collaborations et ressources pour la recherche sur les invertébrés marins</p>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- Publications -->
+                <div class="card mb-5 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-primary"><i class="fas fa-book-open me-2"></i>Publications</h2>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <h5>Classification automatique des invertébrés benthiques par deep learning</h5>
+                                <p class="text-muted">Marine Ecology Progress Series, 2023</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Lire l'article</a>
+                            </li>
+                            <li class="mb-3">
+                                <h5>Patterns of biodiversity in Mediterranean coraligenous assemblages</h5>
+                                <p class="text-muted">Scientific Reports, 2022</p>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Lire l'article</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Citations GBIF -->
+                <div class="card mb-5 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-primary">
+                            <img src="{% static 'images/gbif-logo.png' %}" alt="GBIF" height="30" class="me-2">
+                            Citations GBIF
+                        </h2>
+                        <p>Nos données utilisées dans des travaux de recherche mondiaux :</p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td>Howell et al. (2023)</td>
+                                    <td>Deep-sea biodiversity patterns</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-primary">Voir</a></td>
+                                </tr>
+                                <tr>
+                                    <td>MarineAI Consortium (2024)</td>
+                                    <td>Benchmarking marine image recognition</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-primary">Voir</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LifeCLEF Virtual Lab -->
+                <div class="card mb-5 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-primary"><i class="fas fa-flask me-2"></i>LifeCLEF Virtual Lab</h2>
+                        <p>Plateforme d'évaluation des algorithmes d'identification d'espèces marines :</p>
+                        <ul>
+                            <li>Challenge annuel sur la classification des invertébrés</li>
+                            <li>Jeu de données de référence avec 137 annotations</li>
+                            <li>Benchmarking des modèles InvertID</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">Accéder au lab</a>
+                    </div>
+                </div>
+
+                <!-- Projets Africains -->
+                <div class="card mb-5 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-primary"><i class="fas fa-project-diagram me-2"></i>Projets Africains</h2>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>Cos4Cloud</h5>
+                                    <p>Intégration des observations citoyennes dans les systèmes de surveillance</p>
+                                    <span class="badge bg-info">2020-2023</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>MAMBO</h5>
+                                    <p>Monitoring marin par imagerie automatisée</p>
+                                    <span class="badge bg-success">Actif</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>SEA-CODE</h5>
+                                    <p>Développement d'outils open-source pour l'écologie marine</p>
+                                    <span class="badge bg-success">Actif</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded">
+                                    <h5>MARINEAI</h5>
+                                    <p>IA pour la surveillance des écosystèmes marins</p>
+                                    <span class="badge bg-warning text-dark">2024-2027</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CACTUS -->
+                <div class="card mb-5 shadow-sm border-0">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-primary"><i class="fas fa-network-wired me-2"></i>Projet CACTUS</h2>
+                        <p>Collaboration pour l'Analyse des Communautés et Traits Underwater Species</p>
+                        <ul>
+                            <li>Base de données des traits fonctionnels des invertébrés</li>
+                            <li>Outils d'analyse des réseaux trophiques</li>
+                            <li>Modèles de distribution d'espèces</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">Voir le projet</a>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="bg-light text-center rounded py-5 px-4 mb-5">
+                    <h3 class="mb-4">Vous menez une recherche sur les invertébrés marins ?</h3>
+                    <a href="#" class="btn btn-primary me-3">
+                        <i class="fas fa-envelope me-2"></i> Contactez notre équipe
+                    </a>
+                    <a href="#" class="btn btn-outline-primary">
+                        <i class="fas fa-database me-2"></i> Accéder aux données
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

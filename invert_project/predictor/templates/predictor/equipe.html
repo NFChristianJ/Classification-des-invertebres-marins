@@ -1,0 +1,449 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static 'images/fond5.jpg' %}') no-repeat center center; background-size: cover; height: 60vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="hero-content text-center text-white w-100">
+            <h1 class="display-3 fw-bold mb-3">Notre Équipe</h1>
+            <p class="lead mb-4">Passionnés d'IA et de biologie marine</p>
+        </div>
+    </div>
+</div>
+
+<!-- Section Équipe -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-3"><i class="fas fa-users me-2"></i>L'âme d'InvertID</h2>
+                <p class="lead text-muted">Une équipe pluridisciplinaire réunissant expertise en intelligence artificielle et connaissance des écosystèmes marins</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Membre 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card team-card h-100 border-0 shadow-sm">
+                    <div class="team-img-container">
+                        <img src="{% static 'images/team/ceo.jpg' %}" class="card-img-top" alt="Développeur">
+                        <div class="team-social">
+                            <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-white"><i class="fas fa-envelope"></i></a>
+                            <a href="#" class="text-white"><i class="fas fa-file-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Christian Noubissi</h3>
+                        <p class="text-primary mb-3">Data-Scientist & Développeur logiciel</p>
+                        <p class="card-text small">Docteure en océanographie avec 10 ans d'expérience sur les écosystèmes benthiques. A dirigé 5 expéditions scientifiques.</p>
+                        <div class="expertise mt-3">
+                            <span class="badge bg-light text-dark me-1">Taxonomie</span>
+                            <span class="badge bg-light text-dark me-1">Écologie</span>
+                            <span class="badge bg-light text-dark">Photographie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Membre 2 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card team-card h-100 border-0 shadow-sm">
+                    <div class="team-img-container">
+                        <img src="{% static 'images/team/cto.jpg' %}" class="card-img-top" alt="CTO">
+                        <div class="team-social">
+                            <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="text-white"><i class="fas fa-code"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Alexandre Leroy</h3>
+                        <p class="text-primary mb-3">CTO & Expert Deep Learning</p>
+                        <p class="card-text small">Ancien chercheur en vision par ordinateur. Spécialiste des architectures Transformers appliquées à l'imagerie scientifique.</p>
+                        <div class="expertise mt-3">
+                            <span class="badge bg-light text-dark me-1">Python</span>
+                            <span class="badge bg-light text-dark me-1">PyTorch</span>
+                            <span class="badge bg-light text-dark">ViT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Membre 3 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card team-card h-100 border-0 shadow-sm">
+                    <div class="team-img-container">
+                        <img src="{% static 'images/team/dev.jpg' %}" class="card-img-top" alt="Développeur">
+                        <div class="team-social">
+                            <a href="#" class="text-white"><i class="fab fa-python"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-docker"></i></a>
+                            <a href="#" class="text-white"><i class="fas fa-server"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="h5 mb-1">Thomas Marchand</h3>
+                        <p class="text-primary mb-3">Développeur Full-Stack</p>
+                        <p class="card-text small">Architecte de la plateforme web. Expert en traitement d'images à grande échelle et interfaces utilisateur scientifiques.</p>
+                        <div class="expertise mt-3">
+                            <span class="badge bg-light text-dark me-1">Django</span>
+                            <span class="badge bg-light text-dark me-1">TensorFlow</span>
+                            <span class="badge bg-light text-dark">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Histoire -->
+        <div class="row mt-5 pt-5">
+            <div class="col-lg-6">
+                <img src="{% static 'images/team/equipe.jpg' %}" class="img-fluid rounded-3 shadow" alt="Notre équipe">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4"><i class="fas fa-history me-2"></i>Notre Histoire</h2>
+                <p>InvertID est né en 2022 d'une rencontre entre passionnés lors d'une expédition en Méditerranée. Constatant les difficultés d'identification rapide des espèces, nous avons décidé d'allier nos compétences complémentaires.</p>
+                
+                <div class="timeline mt-4">
+                    <div class="timeline-item">
+                        <div class="timeline-badge bg-primary"></div>
+                        <div class="timeline-content">
+                            <h5 class="fw-bold">Fondation</h5>
+                            <p class="small text-muted">Mars 2022</p>
+                            <p>Premier prototype développé pendant un hackathon maritime</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge bg-success"></div>
+                        <div class="timeline-content">
+                            <h5 class="fw-bold">Première version</h5>
+                            <p class="small text-muted">Septembre 2022</p>
+                            <p>Lancement de l'API avec 50 espèces identifiables</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge bg-info"></div>
+                        <div class="timeline-content">
+                            <h5 class="fw-bold">Version actuelle</h5>
+                            <p class="small text-muted">Janvier 2024</p>
+                            <p>Reconnaissance de 500+ espèces avec 89% de précision</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Valeurs -->
+        <div class="row mt-5 py-5">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold"><i class="fas fa-heart me-2"></i>Nos Valeurs</h2>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="value-icon bg-primary text-white mx-auto mb-3">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h4>Rigueur Scientifique</h4>
+                <p class="text-muted">Nos algorithmes sont validés par des experts en taxonomie marine</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="value-icon bg-success text-white mx-auto mb-3">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h4>Innovation Ouverte</h4>
+                <p class="text-muted">Partage des résultats avec la communauté scientifique</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="value-icon bg-info text-white mx-auto mb-3">
+                    <i class="fas fa-water"></i>
+                </div>
+                <h4>Protection Marine</h4>
+                <p class="text-muted">1% de notre chiffre d'affaires reversé à la conservation</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4">Prêt à explorer avec nous ?</h2>
+        <p class="lead mb-5">Rejoignez notre communauté de chercheurs et passionnés</p>
+        <a href="{% url 'participer' %}" class="btn btn-primary btn-lg px-5 me-3">
+            <i class="fas fa-users me-2"></i> Participer
+        </a>
+        <a href="{% url 'contact' %}" class="btn btn-outline-primary btn-lg px-5">
+            <i class="fas fa-envelope me-2"></i> Nous contacter
+        </a>
+    </div>
+</section>
+
+<!-- Styles spécifiques -->
+<style>
+    .team-card {
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    
+    .team-img-container {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .team-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+    
+    .team-card:hover .team-img-container img {
+        transform: scale(1.05);
+    }
+    
+    .team-social {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        padding: 20px;
+        text-align: center;
+        transition: bottom 0.3s;
+    }
+    
+    .team-card:hover .team-social {
+        bottom: 0;
+    }
+    
+    .team-social a {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        margin: 0 5px;
+        transition: all 0.3s;
+    }
+    
+    .team-social a:hover {
+        background: #0d6efd;
+        transform: translateY(-3px);
+    }
+    
+    .value-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+    }
+    
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .timeline-item {
+        position: relative;
+        padding-bottom: 20px;
+    }
+    
+    .timeline-badge {
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+    
+    .timeline-content {
+        padding-left: 20px;
+        border-left: 2px solid #dee2e6;
+    }
+    
+    @media (max-width: 768px) {
+        .team-img-container {
+            height: 200px;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+    }
+</style>
+<div>
+    <p>
+        
+    </p>
+</div>
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

@@ -1,0 +1,454 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="50" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'coming_soon' %}">
+                    <i class="fas fa-mobile-alt me-2">UTILISER L'APPLICATION</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Seconde section -->
+<section class="photo-slider position-relative">
+    <!-- Conteneur des images (diaporama) -->
+    <div class="slider-container">
+        <div class="slide" style="background-image: url('{% static 'images/baniere1.jpg' %}');" loading="eager"></div>
+        <div class="slide" style="background-image: url('{% static 'images/baniere2.jpg' %}');" loading="eager"></div>
+        <div class="slide" style="background-image: url('{% static 'images/baniere3.jpg' %}');" loading="eager"></div>
+    </div>
+    
+    <!-- Overlay et contenu (identique à votre version) -->
+    <div class="dark-overlay"></div>
+    <div class="container h-100 position-relative z-index-2">
+        <div class="row h-100 align-items-center content-offset">
+            <div class="col-12 text-center text-white py-5">
+                <h2 class="display-4 mb-4 fw-bold text-carousel">
+                    <span class="carousel-phrase active">UNE PHOTO</span>
+                    <span class="carousel-phrase">UNE ESPÈCE</span>
+                    <span class="carousel-phrase">UN INVERTÉBRÉ MARIN</span>
+                </h2>
+                <p class="lead mb-5 fs-5 fw-light fst-italic"><h5>
+                    Avec l'application <strong>InvertID</strong>, identifiez un invertébré marin à partir d'une photo,<br>
+                    et rejoignez un projet de sciences participatives sur la biodiversité marine.</h5>
+                </p>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-4">
+                    <a href="{% url 'understand' %}" class="btn btn-light btn-lg px-4 py-2">
+                        EN SAVOIR +
+                    </a>
+                    <a href="{% url 'participer' %}" class="btn btn-primary btn-lg px-4 py-2">
+                        NOUS SOUTENIR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Téléchargement -->
+<section class="download-section py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+           <!-- Colonne App Store -->
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="d-inline-block text-start">
+                    <div class="mb-3">
+                        <span class="badge bg-primary mb-2">Télécharger dans</span>
+                        <h3 class="fw-bold">l'App Store</h3>
+                    </div>
+                    <a href="{% url 'coming_soon' %}">
+                        <img src="{% static 'images/app-store-badge.jpg' %}" alt="Disponible sur l'App Store" style="height: 50px;">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Colonne Google Play -->
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <div class="d-inline-block text-start">
+                    <div class="mb-3">
+                        <span class="badge bg-primary mb-2">DISPONIBLE SUR</span>
+                        <h3 class="fw-bold">Google Play</h3>
+                    </div>
+                    <a href="{% url 'coming_soon' %}">
+                        <img src="{% static 'images/google-play-badge.jpg' %}" alt="Disponible sur Google Play" style="height: 50px;">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Colonne Version Web -->
+            <div class="col-md-4 text-center">
+                <div class="d-inline-block">
+                    <img src="{% static 'images/logo.jpg' %}" alt="InvertID" style="height: 40px;" class="mb-3">
+                    <h3 class="fw-bold">Version Web</h3>
+                    <a href="{% url 'upload' %}" class="btn btn-outline-primary mt-2">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h1 class="display-4 mb-4">Identifiez les invertébrés marins</h1>
+        <p class="lead mb-4">Notre IA vous aide à classifier les espèces marines</p>
+        <a href="{% url 'upload' %}" class="btn btn-light btn-lg px-4">
+            <i class="fas fa-camera me-3"></i> Telecharger une image
+        </a>
+    </div>
+</section>
+
+<!-- Section Espèces -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Espèces cibles d'InvertID</h2>
+        <h6 class="text-center mb-5">InvertID est un projet de sciences participatives accessible sous forme d’application qui vous aide à identifier des invertebres marrins à partir de vos photos</h6>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Carte Espèce -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/actiniaria.jpg' %}" class="card-img-top" alt="Actiniaria">
+                    <div class="card-body">
+                        <h3 class="card-title">Actiniaria</h3>
+                        <p class="card-text">Actinia est un genre d' anémones de mer de la famille des Actiniidae . Les Actinia présentent une forme rare d' hétéromorphose , dans laquelle une coupure infligée à un spécimen peut se transformer en une seconde bouche.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/Aequorea.jpg' %}" class="card-img-top" alt="Aequorea">
+                    <div class="card-body">
+                        <h3 class="card-title">Aequorea</h3>
+                        <p class="card-text small">Aequorea aussi appelée Crystal Jelly est une méduse (plus exactement une Hydroméduse) bioluminescente rencontrée sur les côtes ouest de l’Amérique du Nord.
+
+                            Aequorea victoria est particulièrement connue pour sa capacité à émettre une lumière fluorescente (pour faciliter la prédation sur des proies) nécessitant une protéine, la GFP (Green Fluorescent Protein) qui, lorsqu’elle est excitée, émet de la lumière vers 504 nm. Cette protéine présente un intérêt en recherche en biologie en tant que marqueur.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/arminia_sp.jpg' %}" class="card-img-top" alt="Arminia SP">
+                    <div class="card-body">
+                        <h3 class="card-title">Arminia SP</h3>
+                        <p class="card-text small">est une espèce de limace de mer , un nudibranche . C'est un mollusque gastéropode marin de la famille des Arminidae . Cette espèce n'était pas décrite par la science en novembre 2009.
+
+                            En 2009, cette espèce n'avait été découverte qu'au large de l'Afrique du Sud , dans la baie False, au large de Windmill Beach, par au moins 10 m de profondeur. Elle semble endémique.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/Comanthus_wahlbergii.jpg' %}" class="card-img-top" alt="Actinoptilum molle">
+                    <div class="card-body">
+                        <h3 class="card-title">Comanthus wahlbergii</h3>
+                        <p class="card-text small">Ces comatules ont jusqu'à 75 bras, et une bouche excentrée à la maturité. Le centrodorsal est circulaire à pentagonal, portant une rangée de cirrhes clairsemée ou pas du tout. Les pinnules orales portent des dents formant un peigne. Ils sont tres répandu dans les oceans Indien et Pacifique.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/Hermite_crab.jpg' %}" class="card-img-top" alt="Hermite_crab">
+                    <div class="card-body">
+                        <h3 class="card-title">Hermite_crab</h3>
+                        <p class="card-text small">Les bernard-l'ermite sont des crustacés décapodes anomoures de la superfamille des Paguroidea qui se sont adaptés pour occuper des coquilles de mollusques vides récupérées afin de protéger leurs exosquelettes fragiles. Il existe plus de 800 espèces de bernard-l'ermite, dont la plupart possèdent un abdomen asymétrique dissimulé par une coquille bien ajustée. L' exosquelette abdominal mou (non calcifié ) des bernard-l'ermite signifie qu'ils doivent occuper un abri produit par d'autres organismes ou risquer d'être sans défense.
+
+                            La forte association entre les bernard-l'ermite et leurs abris a considérablement influencé leur biologie.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/aristeus_varidiens.jpg' %}" class="card-img-top" alt="aristeus_varidiens">
+                    <div class="card-body">
+                        <h3 class="card-title">aristeus_varidiens</h3>
+                        <p class="card-text small">Aristeus est un genre de crustacés décapodes dont les représentants ressemblent à des crevettes. Ce sont des crustacés d'eaux profondes, munis d'un rostre effilé. Leur corps est lisse, parfois mou. Les 5 premières paires de pattes périopodes sont allongées, les 3 premières munies de pinces (la 3e étant la plus longue)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/lophaster_quadrispinus.jpg' %}" class="card-img-top" alt="lophaster_quadrispinus">
+                    <div class="card-body">
+                        <h3 class="card-title">lophaster quadrispinus</h3>
+                        <p class="card-text small">lophaster quadrispinus est un genre d'étoiles de mer de la famille des Solasteridae qui sont des etoiles de mer. Elles possèdent généralement un disque central et cinq bras, bien que certaines espèces en possèdent un plus grand nombre. La surface aborale (supérieure) peut être lisse, granuleuse ou épineuse, et est recouverte de plaques superposées. De nombreuses espèces arborent des couleurs vives, déclinées en rouge ou orange, tandis que d'autres sont bleues, grises ou brunes. Les étoiles de mer possèdent des pieds tubulaires actionnés par un système hydraulique et une bouche au centre de la surface orale (inférieure). Ce sont des prédateurs opportunistes , principalement des invertébrés benthiques .</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="{% static 'images/Cheronia_lampas.jpg' %}" class="card-img-top" alt="Cheronia_lampas">
+                    <div class="card-body">
+                        <h5 class="card-title">Cheronia_lampas</h5>
+                        <p class="card-text small">Charonia lampas est une espèce de conques.
+
+                            C'est un coquillage très répandu dans les mers chaudes (sauf en Amérique), un géant parmi les coquillages.
+                            
+                            Ce coquillage a été utilisé comme trompe sonore pendant la Préhistoire, à la fin de l'âge de glace, il y a 17 000 ans ... puis pendant l'Antiquité et peut atteindre 210 mm voire près de 40 cm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Telecharger une image -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h1 class="display-4 mb-4">Identifiez les invertébrés marins</h1>
+        <p class="lead mb-4">Utilisez notre intelligence artificielle pour classifier les espèces marines</p>
+        <a href="{% url 'upload' %}" class="btn btn-light btn-lg px-4">
+            <i class="fas fa-camera me-3"></i> Telecharger une image
+        </a>
+    </div>
+</section>
+
+<!-- Section Partenaires -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Nos Partenaires</h2>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-6 col-md-3 col-lg-2 text-center py-2">
+                <img src="{% static 'images/uy1.jpg' %}" alt="Partenaire" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 text-center py-2">
+                <img src="{% static 'images/uy2.jpg' %}" alt="Partenaire" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 text-center py-2">
+                <img src="{% static 'images/enspy.jpg' %}" alt="Partenaire" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <div class="col-6 col-md-3 col-lg-2 text-center py-2">
+                <img src="{% static 'images/ud.jpg' %}" alt="Partenaire" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <!-- Répétez pour chaque partenaire -->
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Colonne Logo & Réseaux -->
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <h3 class="mb-3">InvertID®</h3>
+                <p class="mb-4">Solution de classification des invertébrés marins par IA</p>
+                
+                <!-- Réseaux sociaux - Remplacez les liens et classes -->
+                <div class="social-icons">
+                    <a href="#" class="text-white me-3" aria-label="Facebook">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white me-3" aria-label="Twitter">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white me-3" aria-label="Instagram">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white me-3" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white" aria-label="Whatsapp">
+                        <i class="fab fa-whatsapp fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white" aria-label="TikTok">
+                        <i class="fab fa-tiktok fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white" aria-label="Discord">
+                        <i class="fab fa-discord fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white" aria-label="YouTube">
+                        <i class="fab fa-youtube fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Colonne Liens 1 -->
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5 class="mb-3 text-uppercase small">Navigation</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'understand' %}" class="text-white-50">Notre vision</a></li>
+                    <li class="mb-2"><a href="{% url 'equipe' %}" class="text-white-50">Équipe</a></li>
+                    <li class="mb-2"><a href="{% url 'blog' %}" class="text-white-50">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne Liens 2 -->
+            <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                <h5 class="mb-3 text-uppercase small">Contribuer</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'participer' %}" class="text-white-50">Faire un don</a></li>
+                    <li class="mb-2"><a href="{% url 'participer' %}" class="text-white-50">Impliquez-vous</a></li>
+                    <li class="mb-2"><a href="{% url 'ressources' %}" class="text-white-50">Ressources</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonne Contact/Légal -->
+            <div class="col-lg-4 col-md-4">
+                <h5 class="mb-3 text-uppercase small">Contact</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="mailto:contact@invertid.org" class="text-white-50">contact@invertid.org</a></li>
+                    <li class="mb-2"><a href="{% url 'conditions' %}" class="text-white-50">Conditions d'utilisation</a></li>
+                    <li class="mb-2"><a href="{% url 'mentions' %}" class="text-white-50">Mentions légales</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-top pt-4 mt-4 text-center text-white-50 small">
+            <p>© 2025 InvertID. Tous droits réservés.</p>
+        </div>
+        <div class="border-top pt-4 mt-4 text-center text-white-50 small">
+            <p></p>
+        </div>
+    </div>
+</footer>
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock %}

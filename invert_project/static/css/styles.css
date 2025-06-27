@@ -1,0 +1,391 @@
+/* ========== VARIABLES ========== */
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #004d99;
+    --light-bg: #f8f9fa;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* ========== NAVIGATION ========== */
+.navbar-custom {
+    background-color: white !important;
+    box-shadow: var(--shadow);
+    z-index: 1030;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* ========== HERO SECTION ========== */
+.hero-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-align: center;
+}
+
+/* ========== SPECIES CARDS ========== */
+.species-card {
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.species-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1199px) {
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+    
+    .hero-section h2 {
+        font-size: 2rem;
+    }
+    
+    .nav-link-text {
+        display: none;
+    }
+    
+    .nav-link i {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .species-card {
+        margin-bottom: 1.25rem;
+    }
+    
+    .btn-lg {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* static/css/styles.css */
+.photo-banner {
+    min-height: 500px; /* Ajustez selon besoin */
+    position: relative;
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Opacité ajustable */
+}
+
+.z-index-2 {
+    z-index: 2;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .photo-banner {
+        min-height: 400px;
+    }
+    
+    .photo-banner .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .photo-banner .lead {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* Animation Carrousel */
+.text-carousel {
+    position: relative;
+    height: 80px; /* Ajustez selon la taille de votre texte */
+    overflow: hidden;
+}
+
+.carousel-phrase {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-in-out;
+}
+
+.carousel-phrase.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.photo-banner .content-offset {
+    transform: translateY(80px); /* Décalage précis */
+    margin-bottom: 80px; /* Compensation */
+}
+
+/* Version mobile */
+@media (max-width: 768px) {
+    .photo-banner .content-offset {
+        transform: translateY(40px);
+        margin-bottom: 40px;
+    }
+}
+
+/* Diaporama amélioré */
+.photo-slider {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide.next-in-line {
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Animation fluide sans blanc */
+@keyframes smoothSlideshow {
+    0% { opacity: 0; z-index: 1; }
+    5% { opacity: 1; z-index: 2; }
+    30% { opacity: 1; z-index: 2; }
+    35% { opacity: 0; z-index: 1; }
+    100% { opacity: 0; z-index: 1; }
+}
+
+.slide:nth-child(1) { animation: smoothSlideshow 23s infinite; }
+.slide:nth-child(2) { animation: smoothSlideshow 23s infinite 8s; }
+.slide:nth-child(3) { animation: smoothSlideshow 23s infinite 16s; }
+/* Conservez vos styles existants */
+.dark-overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.content-offset {
+    transform: translateY(80px);
+}
+
+/* Animation texte (existant) */
+.text-carousel {
+    position: relative;
+    height: 90px;
+    perspective: 1000px;
+}
+
+.carousel-phrase {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    transform: rotateX(90deg);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.carousel-phrase.active {
+    opacity: 1;
+    transform: rotateX(0deg);
+}
+
+.download-section {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.download-section .badge {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    padding: 0.35rem 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Footer */
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: white !important;
+}
+
+.social-icons a {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Page Comprendre */
+.understand-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.species-card {
+    transition: transform 0.3s;
+}
+
+.species-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Timeline verticale */
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-step {
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.timeline-step:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Effet de survol sur les cartes espèces */
+.species-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.species-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* En-têtes de section */
+.card-header {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Optionnel : pour améliorer l'apparence */
+.form-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-control, .form-select {
+    border-radius: 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.btn-primary {
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.hero-section {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    min-height: 400px; /* Ajustez selon vos besoins */
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 45, 90, 0.7); /* Fond bleu semi-transparent */
+}
+
+.hero-section {
+    background-image: url('fond2.jpg');
+    background-size: cover;       /* Couvre toute la zone */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Empêche la répétition */
+}

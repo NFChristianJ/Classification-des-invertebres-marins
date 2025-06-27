@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Classification des Invertebres Marrins" company="" webLink="http://" view-date="2024-11-01" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3312" locale="fr_FR">
+    <description><![CDATA[Le but de ce projet est de concevoir une application mobile qui permettra de classer les invertebres marrins a partir des images]]></description>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="200" order="0"/>
+        <field id="tpd4" name="Date de début" width="75" order="1"/>
+        <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="1" uid="d4c6da1d17c044499818c4155af7ccb8" name="Phase 1 : Initialisation et Préparation" meeting="false" start="2024-11-08" duration="16" complete="0" thirdDate="2024-11-08" thirdDate-constraint="1" expand="true">
+            <task id="2" uid="6ed1a8c32af94a9781965d33e63bc343" name="Étude préliminaire : 1 semaine" meeting="false" start="2024-11-08" duration="6" complete="0" expand="true">
+                <depend id="14" type="2" difference="0" hardness="Strong"/>
+                <depend id="15" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="15" uid="3cc3d46651d240a6a48e5a88f42c646d" name="Cahier de description et plan du projet" meeting="true" start="2024-11-18" duration="0" complete="0" expand="true"/>
+            <task id="14" uid="f18fab9cd6844066b93b82440a0e6267" name="Preparations des donnees : 2 semaines" meeting="false" start="2024-11-18" duration="10" complete="0" expand="true">
+                <depend id="5" type="2" difference="0" hardness="Strong"/>
+                <depend id="16" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="16" uid="58d595224b1d4580a129ad329f88d425" name="Données Preparées" meeting="true" start="2024-12-02" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="4" uid="08a4c40e895a49469377c5ba15772ad0" name="Phase 2 : Developpement du Modele" meeting="false" start="2024-11-01" duration="86" complete="0" expand="true">
+            <task id="5" uid="9a48f075dbaf4fe1a2c678cb7129faf1" name="Developpement du Modele : 8 semaines" meeting="false" start="2024-12-02" duration="45" complete="0" expand="true">
+                <depend id="6" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="20" uid="18dc33a9bf354e1892c801bba5f5c1da" name="" meeting="false" start="2024-11-01" duration="1" complete="0" expand="true"/>
+            <task id="6" uid="dd9d361eab334e59be2bad9f993495dc" name="Optimisation du modele : 4 semaines" meeting="false" start="2025-02-03" duration="20" complete="0" expand="true">
+                <depend id="8" type="2" difference="0" hardness="Strong"/>
+                <depend id="17" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="17" uid="c28c60450b92472da96d483101e1b68a" name="Modele Optimisé" meeting="true" start="2025-03-03" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="7" uid="0ad3ca775fc84ca29cdd5fd6c35a163b" name="Phase 3 : Developpement Mobile" meeting="false" start="2025-03-03" duration="68" complete="0" expand="true">
+            <task id="8" uid="a802c02cf5f548b88eca3d7e9034593c" name="Architecture de l'application : 3 semaines" meeting="false" start="2025-03-03" duration="6" complete="0" expand="true">
+                <depend id="9" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="9" uid="04bf166e9d164ba3973e37bdb0a5b30f" name="Devellopement Frontend : 6 semaines" meeting="false" start="2025-03-11" duration="44" complete="0" expand="true">
+                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="10" uid="539133d77993435a807638517dc14723" name="Integration du modele : 2 semaines" meeting="false" start="2025-05-12" duration="18" complete="0" expand="true">
+                <depend id="13" type="2" difference="0" hardness="Strong"/>
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="18" uid="2ba2e86fbfab4f6a961d2c55bcdb9bb6" name="Application Fonctionnelle" meeting="true" start="2025-06-05" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="11" uid="dc48adfd946c4239a4327317461bde95" name="Phase 4: Test et Deploiement" meeting="false" start="2025-06-05" duration="26" complete="0" expand="true">
+            <task id="13" uid="0d6311128fd44a8894f3f92c5abe0e42" name="Test : 3 semaine" meeting="false" start="2025-06-05" duration="18" complete="0" expand="true">
+                <depend id="12" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="12" uid="0d3f40e2539f4eeabcfe99adf7e7cf4a" name="Deploiement du Modele : 1 semaine" meeting="false" start="2025-07-01" duration="8" complete="0" expand="true">
+                <depend id="19" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="19" uid="f72db87a8b0346eeb0bf0d7cbed5cf46" name="Projet Livré" meeting="true" start="2025-07-11" duration="0" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>

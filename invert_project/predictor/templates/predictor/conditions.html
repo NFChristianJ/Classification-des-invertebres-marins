@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static 'images/fond1.jpg' %}') no-repeat center center; background-size: cover; height: 40vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="hero-content text-center text-white w-100">
+            <h1 class="display-3 fw-bold mb-3">Conditions d'Utilisation</h1>
+            <p class="lead mb-4">Règles d'usage de la plateforme InvertID</p>
+        </div>
+    </div>
+</div>
+
+<!-- Section CGU -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <article class="legal-content">
+                            <div class="alert alert-primary">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                En utilisant <strong>InvertID</strong>, vous acceptez pleinement ces conditions.
+                            </div>
+
+                            <h2 class="mb-4 text-primary"> Objet</h2>
+                            <p>
+                                Les présentes Conditions Générales d'Utilisation (CGU) régissent l'utilisation du service InvertID, 
+                                plateforme de classification des invertébrés marins par intelligence artificielle (Reseaux de neurones).
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Accès au service</h2>
+                            <p>
+                                <strong>2.1.</strong> L'utilisation nécessite :<br>
+                                - Un compte utilisateur valide (pour certaines fonctionnalités)<br>
+                                - Une connexion internet stable<br>
+                                - Un navigateur à jour (Chrome, Firefox, Edge)<br><br>
+                                
+                                <strong>2.2.</strong> Les mineurs doivent obtenir l'accord de leur tuteur légal.
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Restrictions d'usage</h2>
+                            <p>
+                                Il est strictement interdit de :<br>
+                                - Utiliser le service à des fins commerciales sans autorisation<br>
+                                - Uploader des images contenant des données personnelles ou sensibles<br>
+                                - Tenter de reverse-engineer le modèle d'IA<br>
+                                - Surcharger intentionnellement les serveurs (DoS)<br>
+                                - Utiliser des bots pour automatiser les requêtes<br>
+                                - Publier des résultats d'identification sans mentionner le caractère probabiliste des suggestions<br>
+                                - Utiliser le service pour valider des diagnostics vétérinaires ou médicaux<br>
+                                - Réutiliser les images traitées pour entraîner d'autres modèles d'IA sans autorisation écrite
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Données et confidentialité</h2>
+                            <p>
+                                <strong>4.1.</strong> Les images uploadées :<br>
+                                - Sont analysées en temps réel<br>
+                                - Sont stockées pour amélioration du modèle<br>
+                                - Ne sont pas partagées avec des tiers sans consentement<br><br>
+                                
+                                <strong>4.2.</strong> Données collectées :<br>
+                                - Métadonnées techniques (navigateur, résolution)<br>
+                                - Résultats de classification (anonymisés)<br>
+                                - Interactions avec l'interface (clics, temps de session)<br><br>
+
+                                <strong>4.3.</strong> Propriété intellectuelle des contributions :<br>
+                                - Les images fournies par les utilisateurs scientifiques partenaires restent leur propriété<br>
+                                - Les annotations expertes contribuées peuvent être utilisées pour améliorer le modèle<br><br>
+
+                                <strong>4.4.</strong> Cookies :<br>
+                                - Cookies techniques indispensables au fonctionnement (session, sécurité)<br>
+                                - Cookies analytiques optionnels (mesure d'audience)
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Limitations techniques</h2>
+                            <p>
+                                <strong>5.1.</strong> Précision du modèle :<br>
+                                Le taux de reconnaissance moyen est de 89% mais peut varier selon :<br>
+                                - La qualité de l'image<br>
+                                - La rareté de l'espèce<br>
+                                - Les conditions de prise de vue (lumière, turbidité)<br><br>
+                                
+                                <strong>5.2.</strong> Disponibilité :<br>
+                                Service opérationnel 24h/24 sauf :<br>
+                                - Maintenance programmée (préavis de 48h)<br>
+                                - Cas de force majeure (cyberattaque, catastrophe naturelle)<br><br>
+
+                                <strong>5.3.</strong> Quotas d'utilisation :<br>
+                                - Limite de 10 requêtes/heure pour les comptes gratuits<br>
+                                - Priorité donnée aux partenaires scientifiques lors des pics de charge<br><br>
+
+                                <strong>5.4.</strong> Compatibilité :<br>
+                                - Non compatible avec les formats RAW professionnels<br>
+                                - Taille maximale des images : 10MP
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Responsabilités</h2>
+                            <p>
+                                <strong>6.1.</strong> InvertID :<br>
+                                - Fournit des suggestions algorithmiques non contractuelles<br>
+                                - Ne garantit pas l'exhaustivité des espèces référencées<br><br>
+                                
+                                <strong>6.2.</strong> L'utilisateur :<br>
+                                - Doit vérifier les identifications pour les usages scientifiques<br>
+                                - Est responsable du contenu qu'il upload<br>
+                                - Doit citer InvertID dans les publications utilisant nos données
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Propriété intellectuelle</h2>
+                            <p>
+                                <strong>7.1.</strong> Le modèle de classification :<br>
+                                - Architecture neuronale protégée par secret commercial<br>
+                                - Poids du modèle sous licence propriétaire<br><br>
+
+                                <strong>7.2.</strong> Base de connaissances :<br>
+                                - Référentiel taxonomique intégrant WoRMS (World Register of Marine Species)<br>
+                                - Corpus d'images sous licence CC-BY-NC pour la recherche
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Usage scientifique</h2>
+                            <p>
+                                <strong>8.1.</strong> Publications :<br>
+                                - Citation obligatoire : "Classification réalisée avec InvertID (https://invertid.org)"<br>
+                                - Notification requise pour les usages dans des publications à comité de lecture<br><br>
+
+                                <strong>8.2.</strong> Collaboration :<br>
+                                - Programme ouvert aux laboratoires pour contribution d'images expertisées<br>
+                                - Accès API possible sur demande pour les institutions partenaires
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Résiliation</h2>
+                            <p>
+                                <strong>9.1.</strong> Suspension possible :<br>
+                                - En cas de violation répétée des CGU<br>
+                                - Pour usage anormalement intensif<br><br>
+
+                                <strong>9.2.</strong> Conservation des données :<br>
+                                - 30 jours après suppression du compte pour les données personnelles<br>
+                                - 5 ans pour les données anonymisées à des fins de recherche
+                            </p>
+
+                            <h2 class="mt-5 mb-4 text-primary"> Modifications</h2>
+                            <p>
+                                Les CGU peuvent être mises à jour. La version en vigueur est toujours accessible sur cette page.
+                                En cas de changement majeur, les utilisateurs actifs seront notifiés par email.
+                            </p>
+
+                            <div class="text-center mt-5">
+                                <a href="{% url 'upload' %}" class="btn btn-primary px-5 py-3">
+                                    <i class="fas fa-check-circle me-2"></i> J'accepte les conditions
+                                </a>
+                                <p class="text-muted small mt-2">Dernière mise à jour : {% now "d/m/Y" %}</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles spécifiques -->
+<style>
+    .legal-content {
+        line-height: 1.8;
+        color: #495057;
+        counter-reset: section;
+    }
+    
+    .legal-content h2 {
+        border-bottom: 2px solid #0d6efd;
+        padding-bottom: 8px;
+        counter-increment: section;
+        counter-reset: subsection;
+    }
+    
+    .legal-content h2::before {
+        content: counter(section) ". ";
+        color: #0d6efd;
+    }
+    
+    .legal-content strong {
+        color: #0d6efd;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+        
+        .legal-content {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock %}

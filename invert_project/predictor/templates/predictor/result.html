@@ -1,0 +1,543 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_math %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="result-container">
+    <!-- Hero Section -->
+    <div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static "images/fond.jpg" %}') no-repeat center center; background-size: contain; height: 60vh;">
+        <div class="container h-100 d-flex align-items-center">
+            <div class="hero-content text-center text-white w-100">
+                <h1 class="display-3 fw-bold mb-3">Résultats d'identification</h1>
+                <p class="lead mb-4">Analyse complète de votre image marine</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Result Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Result Card -->
+                    <div class="result-card shadow-lg">
+                        <div class="row g-0">
+                            <!-- Image Column -->
+                            <div class="col-md-6">
+                                <div class="image-container">
+                                    {% if image_url %}
+                                        <img src="{{ image_url }}" alt="Image analysée" class="result-image img-fluid">
+                                    {% else %}
+                                        <div class="no-image-placeholder">
+                                            <i class="fas fa-image fa-5x text-muted"></i>
+                                            <p>Aucune image disponible</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Results Column -->
+                            <div class="col-md-6">
+                                <div class="result-details p-4 p-md-5">
+                                    {% if predicted_class == "Catégorie inconnue" %}
+                                        <div class="unknown-species text-center py-4">
+                                            <i class="fas fa-question-circle fa-4x text-danger mb-3"></i>
+                                            <h3 class="text-danger">Espèce inconnue</h3>
+                                            <p class="text-muted">Notre système n'a pas pu identifier cette espèce avec certitude</p>
+                                        </div>
+                                    {% else %}
+                                        <div class="species-identified">
+                                            <h2 class="species-name">
+                                                <i class="fas fa-fish me-2"></i>{{ predicted_class }}
+                                            </h2>
+                                            
+                                            <div class="confidence-level mt-4">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Confiance :</span>
+                                                    <span class="confidence-value {% if confidence >= 90 %}high-confidence
+                                                                                {% elif confidence >= 70 %}medium-confidence
+                                                                                {% else %}low-confidence{% endif %}">
+                                                        {{ confidence }}%
+                                                    </span>
+                                                </div>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar {% if confidence >= 90 %}bg-success
+                                                                            {% elif confidence >= 70 %}bg-warning
+                                                                            {% else %}bg-danger{% endif %}" 
+                                                         role="progressbar" 
+                                                         style="width: {{ confidence }}%" 
+                                                         aria-valuenow="{{ confidence }}" 
+                                                         aria-valuemin="0" 
+                                                         aria-valuemax="100">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="top-predictions mt-5">
+                                                <h4 class="mb-4">
+                                                    <i class="fas fa-chart-bar me-2"></i>Top 5 des prédictions
+                                                </h4>
+                                                
+                                                {% for cls, prob in top5 %}
+                                                    <div class="prediction-item mb-3">
+                                                        <div class="d-flex justify-content-between mb-1">
+                                                            <span class="prediction-name">{{ cls }}</span>
+                                                            <span class="prediction-percent">{{ prob|floatformat:2|mul:100 }}%</span>
+                                                        </div>
+                                                        <div class="progress" style="height: 8px;">
+                                                            <div class="progress-bar" 
+                                                                 style="width: {{ prob|floatformat:2|mul:100 }}%; 
+                                                                        background-color: hsl({{ forloop.counter0|add:"31"|mul:"10"|floatformat:0 }}, 70%, 50%);">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    
+                                    <div class="action-buttons mt-5 pt-3 text-center">
+                                        <a href="{% url 'upload' %}" class="btn btn-primary btn-lg me-2">
+                                            <i class="fas fa-upload me-2"></i>Nouvelle analyse
+                                        </a>
+                                        <a href="#" class="btn btn-outline-secondary btn-lg">
+                                            <i class="fas fa-info-circle me-2"></i>En savoir plus
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold"><i class="fas fa-book-open me-2"></i>Informations complémentaires</h2>
+                <p class="lead text-muted">En savoir plus sur cette espèce marine</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="info-card h-100">
+                        <div class="info-card-header bg-primary text-white">
+                            <i class="fas fa-info-circle me-2"></i>Caractéristiques
+                        </div>
+                        <div class="info-card-body">
+                            {% if predicted_class != "Catégorie inconnue" %}
+                                <p>Voici quelques caractéristiques typiques de cette espèce :</p>
+                                <ul class="species-facts">
+                                    <li><i class="fas fa-ruler-combined me-2"></i>Taille moyenne : ... cm</li>
+                                    <li><i class="fas fa-palette me-2"></i>Couleur dominante : ...</li>
+                                    <li><i class="fas fa-water me-2"></i>Habitat : ...</li>
+                                    <li><i class="fas fa-map-marker-alt me-2"></i>Distribution : ...</li>
+                                </ul>
+                            {% else %}
+                                <p>Cette espèce n'a pas pu être identifiée. Voici comment améliorer vos résultats :</p>
+                                <ul class="species-facts">
+                                    <li><i class="fas fa-camera me-2"></i>Prenez une photo plus nette</li>
+                                    <li><i class="fas fa-sun me-2"></i>Améliorez l'éclairage</li>
+                                    <li><i class="fas fa-ruler-combined me-2"></i>Cadrez uniquement l'animal</li>
+                                    <li><i class="fas fa-upload me-2"></i>Essayez avec une autre image</li>
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="info-card h-100">
+                        <div class="info-card-header bg-success text-white">
+                            <i class="fas fa-book me-2"></i>Ressources
+                        </div>
+                        <div class="info-card-body">
+                            <h5 class="mb-3">Pour en savoir plus :</h5>
+                            <div class="resource-list">
+                                <a href="#" class="resource-item">
+                                    <i class="fas fa-external-link-alt me-2"></i>Fiche GBIF de l'espèce
+                                </a>
+                                <a href="#" class="resource-item">
+                                    <i class="fas fa-book me-2"></i>Guide des espèces marines
+                                </a>
+                                <a href="#" class="resource-item">
+                                    <i class="fas fa-video me-2"></i>Vidéos documentaires
+                                </a>
+                                <a href="#" class="resource-item">
+                                    <i class="fas fa-map-marked-alt me-2"></i>Zones d'observation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Styles -->
+<style>
+    /* Hero Section */
+    .result-bg {
+        background: linear-gradient(rgba(0, 45, 90, 0.7), rgba(0, 0, 0, 0.7)), 
+                    url('{% static "images/result-bg.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hero-overlay {
+        width: 100%;
+        padding: 60px 0;
+    }
+    
+    /* Result Card */
+    .result-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transform: translateY(-50px);
+        margin-bottom: -30px;
+        background: white;
+    }
+    
+    .image-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        padding: 30px;
+    }
+    
+    .result-image {
+        max-height: 400px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .no-image-placeholder {
+        text-align: center;
+        color: #6c757d;
+    }
+    
+    .result-details {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Species Identification */
+    .species-name {
+        color: #0d6efd;
+        font-weight: 700;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+    }
+    
+    .confidence-level {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .confidence-value {
+        font-weight: 700;
+    }
+    
+    .high-confidence {
+        color: #198754;
+    }
+    
+    .medium-confidence {
+        color: #fd7e14;
+    }
+    
+    .low-confidence {
+        color: #dc3545;
+    }
+    
+    /* Top Predictions */
+    .top-predictions {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .prediction-item {
+        margin-bottom: 15px;
+    }
+    
+    .prediction-name {
+        font-weight: 500;
+    }
+    
+    .prediction-percent {
+        font-weight: 600;
+        color: #495057;
+    }
+    
+    /* Info Cards */
+    .info-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+    
+    .info-card-header {
+        padding: 15px 20px;
+        font-weight: 600;
+    }
+    
+    .info-card-body {
+        padding: 20px;
+        background: white;
+    }
+    
+    .species-facts {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .species-facts li {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .resource-list {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .resource-item {
+        padding: 10px 0;
+        color: #212529;
+        text-decoration: none;
+        transition: all 0.2s;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .resource-item:hover {
+        color: #0d6efd;
+        padding-left: 5px;
+    }
+    
+    /* Unknown Species */
+    .unknown-species {
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+    
+    /* Action Buttons */
+    .action-buttons {
+        border-top: 1px solid #eee;
+    }
+</style>
+
+<!-- Floating Navigation -->
+<div class="floating-nav">
+    <a href="#top" class="nav-btn" data-bs-toggle="tooltip" title="Haut de page">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <a href="{% url 'upload' %}" class="nav-btn" data-bs-toggle="tooltip" title="Nouvelle analyse">
+        <i class="fas fa-redo"></i>
+    </a>
+    <a href="{% url 'index' %}" class="nav-btn" data-bs-toggle="tooltip" title="Accueil">
+        <i class="fas fa-home"></i>
+    </a>
+</div>
+
+<style>
+    .floating-nav {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+    }
+    
+    .nav-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #0d6efd;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+    }
+    
+    .nav-btn:hover {
+        transform: scale(1.1);
+        background: #0b5ed7;
+        color: white;
+    }
+</style>
+
+<!-- Navigation -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock %}

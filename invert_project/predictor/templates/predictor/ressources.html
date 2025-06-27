@@ -1,0 +1,692 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.85), rgba(0,0,0,0.85)), url('{% static 'images/fond9.jpg' %}') no-repeat center center/cover;">
+    <div class="container text-center text-white py-5">
+        <h1 class="display-4 fw-bold mb-4">Ressources pour la recherche marine</h1>
+        <p class="lead mb-4">Accédez à nos outils open-source et jeux de données pour faire avancer la connaissance des invertébrés marins</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#developers" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-code me-2"></i>Outils Dev
+            </a>
+            <a href="#datasets" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-database me-2"></i>Jeux de données
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation secondaire -->
+<nav class="sticky-top bg-white shadow-sm" style="top: 56px;">
+    <div class="container">
+        <ul class="nav nav-pills justify-content-center py-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#developers">Pour développeurs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#datasets">Données ouvertes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#publications">Publications</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Section Développeurs -->
+<section id="developers" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-code text-primary me-2"></i>Ressources pour développeurs</h2>
+            <p class="lead text-muted">Intégrez la puissance de notre IA dans vos applications</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- API Card -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-cloud fa-2x me-3"></i>
+                            <div>
+                                <h3 class="h4 mb-0">API InvertID</h3>
+                                <small class="opacity-75">Version 2.1 - Dernière mise à jour : 15/06/2024</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Notre API REST permet d'intégrer la classification des invertébrés marins directement dans vos applications.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="h5">Fonctionnalités clés :</h4>
+                            <ul class="fa-ul">
+                                <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>Classification en temps réel</li>
+                                <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>Analyse par lot (batch processing)</li>
+                                <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>Retour des 5 meilleures correspondances</li>
+                                <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>Métadonnées taxonomiques complètes</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Limite gratuite :</strong> 1,000 requêtes/mois - Clé API requise
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-book me-2"></i>Documentation
+                            </a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-key me-2"></i>Obtenir une clé API
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary ms-auto">
+                                <i class="fas fa-terminal me-2"></i>Try it out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GitHub Card -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-dark text-white">
+                        <div class="d-flex align-items-center">
+                            <i class="fab fa-github fa-2x me-3"></i>
+                            <div>
+                                <h3 class="h4 mb-0">Dépôt GitHub</h3>
+                                <small class="opacity-75">Projet open-source sous licence MIT</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Notre code source est ouvert à toutes les contributions pour améliorer la classification des espèces marines.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="h5">Principaux dépôts :</h4>
+                            <div class="list-group list-group-flush">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="fas fa-brain me-2"></i>Modèles ViT
+                                    </span>
+                                    <span class="badge bg-primary rounded-pill">v2.3.1</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="fas fa-server me-2"></i>API Service
+                                    </span>
+                                    <span class="badge bg-primary rounded-pill">v1.8.0</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="fas fa-mobile-alt me-2"></i>Application Mobile
+                                    </span>
+                                    <span class="badge bg-primary rounded-pill">Beta</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="github-stats d-flex gap-3 text-center">
+                            <div class="flex-grow-1">
+                                <div class="h5 mb-1">428</div>
+                                <small class="text-muted">Stars</small>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="h5 mb-1">137</div>
+                                <small class="text-muted">Forks</small>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="h5 mb-1">24</div>
+                                <small class="text-muted">Contributeurs</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="#" class="btn btn-dark w-100">
+                            <i class="fab fa-github me-2"></i>Voir sur GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SDKs & Libraries -->
+        <div class="row g-4">
+            <div class="col-12">
+                <h3 class="h4 mb-4"><i class="fas fa-box-open text-primary me-2"></i>Bibliothèques client</h3>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                            <i class="fab fa-python fa-2x"></i>
+                        </div>
+                        <h4 class="h5">Python SDK</h4>
+                        <p class="small text-muted">Bibliothèque officielle pour intégration Python</p>
+                        <div class="mt-3">
+                            <code class="d-block text-start bg-light p-2 rounded small">pip install invertid-sdk</code>
+                            <a href="#" class="btn btn-sm btn-outline-primary mt-2">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                            <i class="fab fa-js fa-2x"></i>
+                        </div>
+                        <h4 class="h5">JavaScript SDK</h4>
+                        <p class="small text-muted">Client officiel pour applications web</p>
+                        <div class="mt-3">
+                            <code class="d-block text-start bg-light p-2 rounded small">npm install invertid-js</code>
+                            <a href="#" class="btn btn-sm btn-outline-primary mt-2">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                            <i class="fas fa-code-branch fa-2x"></i>
+                        </div>
+                        <h4 class="h5">API Postman</h4>
+                        <p class="small text-muted">Collection Postman pour tester l'API</p>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-download me-2"></i>Télécharger
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary mt-2 mt-sm-0">
+                                <i class="fas fa-external-link-alt me-2"></i>Importer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Données -->
+<section id="datasets" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-database text-primary me-2"></i>Jeux de données ouverts</h2>
+            <p class="lead text-muted">Données scientifiques pour la recherche sur la biodiversité marine</p>
+        </div>
+        
+        <div class="row g-4 mb-5">
+            <!-- InvertID300k -->
+            <div class="col-lg-8">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="h4 mb-0">
+                            <i class="fas fa-images me-2"></i>
+                            InvertID
+                            <span class="badge bg-light text-success ms-2">v3.2</span>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Notre jeu de données principal pour l'entraînement des modèles de classification.</p>
+                                <ul class="fa-ul mb-4">
+                                    <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>des miliers d'images annotées</li>
+                                    <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>137 espèces marines</li>
+                                    <li><span class="fa-li"><i class="fas fa-check-circle text-success"></i></span>Métadonnées complètes</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-light border-0 h-100">
+                                    <div class="card-body">
+                                        <h5 class="h6">Statistiques :</h5>
+                                        <div class="mb-2">
+                                            <span class="small">Images par espèce :</span>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <span class="small">Qualité des annotations :</span>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 92%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <span class="small">Couverture géographique :</span>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 78%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex flex-wrap gap-2 align-items-center">
+                            <span class="me-2 small">
+                                <i class="fas fa-balance-scale me-1"></i>
+                                Licence : <strong>CC-BY 4.0</strong>
+                            </span>
+                            <span class="me-2 small">
+                                <i class="fas fa-hdd me-1"></i>
+                                Taille : <strong>45GB</strong>
+                            </span>
+                            <span class="me-2 small">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Mise à jour : <strong>15/05/2024</strong>
+                            </span>
+                            <div class="ms-auto d-flex gap-2">
+                                <a href="#" class="btn btn-sm btn-success">
+                                    <i class="fas fa-download me-2"></i>Télécharger
+                                </a>
+                                <a href="#" class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-book me-2"></i>Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GBIF -->
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'images/gbif-logo.png' %}" alt="GBIF" height="30" class="me-2">
+                            <h3 class="h4 mb-0">Données GBIF</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Nos observations partagées via le Global Biodiversity Information Facility.</p>
+                        <ul class="fa-ul mb-4">
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Format Darwin Core</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Métadonnées standardisées</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Interopérable</li>
+                        </ul>
+                        <div class="alert alert-info small mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Les données sont mises à jour trimestriellement.
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="#" class="btn btn-primary w-100">
+                            <i class="fas fa-external-link-alt me-2"></i>Accéder sur GBIF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Autres jeux de données -->
+        <div class="row g-4">
+            <div class="col-12">
+                <h3 class="h4 mb-4"><i class="fas fa-folder-open text-primary me-2"></i>Autres ressources</h3>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <div class="bg-primary bg-opacity-10 text-primary rounded p-2 me-3">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-0">Cartes de répartition</h4>
+                                <small class="text-muted">Shapefiles & GeoJSON</small>
+                            </div>
+                        </div>
+                        <p class="small">Données géospatiales des observations par espèce.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Télécharger</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <div class="bg-primary bg-opacity-10 text-primary rounded p-2 me-3">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-0">Données génétiques</h4>
+                                <small class="text-muted">BOLD & GenBank</small>
+                            </div>
+                        </div>
+                        <p class="small">Séquences de référence pour identification moléculaire.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <div class="bg-primary bg-opacity-10 text-primary rounded p-2 me-3">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-0">Clés d'identification</h4>
+                                <small class="text-muted">PDF interactifs</small>
+                            </div>
+                        </div>
+                        <p class="small">Guides d'identification traditionnelle des espèces.</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">Consulter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Publications -->
+<section id="publications" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-file-alt text-primary me-2"></i>Publications scientifiques</h2>
+            <p class="lead text-muted">Nos recherches et articles sur la classification automatique des invertébrés marins</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-body">
+                        <h3 class="h5">Vision Transformers for Marine Species Identification</h3>
+                        <p class="small text-muted mb-2">Journal of Marine Science, 2023</p>
+                        <p class="small">Présentation de notre architecture ViT spécialisée pour la classification des invertébrés marins.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-file-pdf me-2"></i>PDF
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-quote-right me-2"></i>Citer
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-code me-2"></i>Données
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-body">
+                        <h3 class="h5">Benchmarking Marine Image Classification</h3>
+                        <p class="small text-muted mb-2">ICML Workshop, 2022</p>
+                        <p class="small">Comparaison des différentes approches de deep learning appliquées à notre jeu de données.</p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-file-pdf me-2"></i>PDF
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-quote-right me-2"></i>Citer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'blog' %}" class="btn btn-primary">
+                <i class="fas fa-book-open me-2"></i>Voir toutes les publications
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container py-4">
+        <h2 class="mb-4">Besoin d'aide avec nos ressources ?</h2>
+        <p class="lead mb-4">Notre équipe est disponible pour répondre à vos questions techniques et scientifiques</p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="#" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-envelope me-2"></i>Nous contacter
+            </a>
+            <a href="#" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-comments me-2"></i>Forum technique
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hover-effect {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .nav-pills .nav-link.active {
+        background-color: var(--bs-primary);
+    }
+    
+    .github-stats {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+        margin: 15px 0;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            min-height: 350px;
+        }
+        
+        .display-4 {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Active le scrollspy pour la navigation secondaire
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-pills .nav-link');
+        
+        function updateActiveNav() {
+            const fromTop = window.scrollY + 150;
+            
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (
+                    section.offsetTop <= fromTop &&
+                    section.offsetTop + section.offsetHeight > fromTop
+                ) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    });
+</script>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

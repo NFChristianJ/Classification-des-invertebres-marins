@@ -1,0 +1,464 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static 'images/fond4.jpg' %}') no-repeat center center; background-size: cover; height: 60vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="hero-content text-center text-white w-100">
+            <h1 class="display-3 fw-bold mb-3">Le Blog InvertID</h1>
+            <p class="lead mb-4">Découvertes, tutoriels, experiences et actualités sur l'IA marine</p>
+        </div>
+    </div>
+</div>
+
+<!-- Section Blog -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <!-- Barre de recherche et filtres -->
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-lg" placeholder="Rechercher un article...">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select form-select-lg">
+                    <option selected>Tous les thèmes</option>
+                    <option>IA Marine</option>
+                    <option>Espèces Rares</option>
+                    <option>Tutoriels</option>
+                    <option>Actualités</option>
+                    <option>Experimentations</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Articles en vedette -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="fw-bold mb-4"><i class="fas fa-star text-warning me-2"></i>Articles Vedettes</h2>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card featured-article h-100 border-0 shadow-sm">
+                    <div class="badge bg-danger position-absolute top-0 start-0 m-3">Nouveau</div>
+                    <img src="{% static 'images/blog/vit.jpg' %}" class="card-img-top" alt="Vision Transformer">
+                    <div class="card-body">
+                        <div class="d-flex mb-2">
+                            <span class="badge bg-primary me-2">IA Marine</span>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i> 15 min de lecture</small>
+                        </div>
+                        <h3 class="h5">Comment Vision Transformer révolutionne l'identification marine</h3>
+                        <p class="card-text">Découvrez comment notre modèle analyse les motifs complexes des invertébrés avec une précision de 89%.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Publié le 20/04/2025</small>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Lire <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card featured-article h-100 border-0 shadow-sm">
+                    <img src="{% static 'images/blog/rare.jpeg' %}" class="card-img-top" alt="Espèce rare">
+                    <div class="card-body">
+                        <div class="d-flex mb-2">
+                            <span class="badge bg-success me-2">Espèces Rares</span>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i> 8 min de lecture</small>
+                        </div>
+                        <h3 class="h5">10 invertébrés méconnus que notre IA a identifiés</h3>
+                        <p class="card-text">Un bilan des découvertes les plus surprenantes faites par nos utilisateurs cette année.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Publié le 28/03/2025</small>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Lire <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card featured-article h-100 border-0 shadow-sm">
+                    <div class="badge bg-info position-absolute top-0 start-0 m-3">Tutoriel</div>
+                    <img src="{% static 'images/blog/camera.jpg' %}" class="card-img-top" alt="Conseils photo">
+                    <div class="card-body">
+                        <div class="d-flex mb-2">
+                            <span class="badge bg-warning me-2">Tutoriels</span>
+                            <small class="text-muted"><i class="far fa-clock me-1"></i> 6 min de lecture</small>
+                        </div>
+                        <h3 class="h5">Optimiser vos photos sous-marines pour l'analyse IA</h3>
+                        <p class="card-text">5 techniques professionnelles pour améliorer la qualité de vos prises de vue.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Publié le 15/05/2024</small>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Lire <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tous les articles -->
+        <div class="row">
+            <div class="col-12">
+                <h2 class="fw-bold mb-4"><i class="fas fa-newspaper text-primary me-2"></i>Tous les Articles</h2>
+            </div>
+            
+            <!-- Article 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/ia-ethics.jpg' %}" class="card-img-top" alt="Éthique IA">
+                    <div class="card-body">
+                        <h3 class="h6">L'éthique de l'IA dans la recherche marine</h3>
+                        <p class="card-text small text-muted">Réflexions sur les enjeux éthiques des technologies d'identification automatisée.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">04/05/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 2 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/citizen-science.jpg' %}" class="card-img-top" alt="Science citoyenne">
+                    <div class="card-body">
+                        <h3 class="h6">Comment contribuer à notre base de données</h3>
+                        <p class="card-text small text-muted">Guide complet pour les plongeurs amateurs souhaitant participer.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">22/04/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 3 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/deep-learning.jpg' %}" class="card-img-top" alt="Deep Learning">
+                    <div class="card-body">
+                        <h3 class="h6">Le deep learning appliqué à la biodiversité</h3>
+                        <p class="card-text small text-muted">Explications techniques sur l'entraînement de notre modèle.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">10/04/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 4 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/conservation.jpg' %}" class="card-img-top" alt="Conservation">
+                    <div class="card-body">
+                        <h3 class="h6">L'IA au service de la conservation marine</h3>
+                        <p class="card-text small text-muted">Cas d'utilisation dans les aires marines protégées.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">28/03/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 5 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/new-features.jpg' %}" class="card-img-top" alt="Nouvelles fonctionnalités">
+                    <div class="card-body">
+                        <h3 class="h6">Nouveautés de la version 2.3</h3>
+                        <p class="card-text small text-muted">Détail des améliorations apportées à notre plateforme.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">15/03/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article 6 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100 border-0">
+                    <img src="{% static 'images/blog/collab.jpg' %}" class="card-img-top" alt="Collaboration">
+                    <div class="card-body">
+                        <h3 class="h6">Notre partenariat avec le CNRS</h3>
+                        <p class="card-text small text-muted">Comment les chercheurs utilisent nos outils sur le terrain.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pt-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">02/03/2024</small>
+                            <a href="#" class="btn btn-sm btn-link">Lire →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Précédent</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Suivant</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-4"><i class="fas fa-paper-plane me-2"></i>Restez informés</h2>
+                <p class="lead mb-4">Abonnez-vous à notre newsletter mensuelle pour recevoir les nouveaux articles et les dernières actualités.</p>
+                <form class="row g-2 justify-content-center">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control form-control-lg" placeholder="Votre email">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-light btn-lg w-100">S'abonner</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <p>
+                    |
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles spécifiques -->
+<style>
+    .featured-article {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 12px;
+    }
+    
+    .featured-article:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .article-card {
+        transition: all 0.2s ease;
+        border-radius: 8px;
+    }
+    
+    .article-card:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .article-card img {
+        height: 180px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    
+    .hero-section {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        background-size: cover !important;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+        
+        .hero-content p.lead {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="coming-soon-container">
+    <div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static "images/fond2.jpg" %}') no-repeat center center; background-size: contain; height: 60vh;">
+        <div class="container h-100 d-flex align-items-center">
+            <div class="hero-content text-center text-white w-100">
+                <h1 class="display-2 fw-bold mb-5">Notre prototype Android est enfin pret</h1>
+                <p class="lead">Notre version ios est en cours de developpement. Telechargéz la version Android en suivant le lien si-dessous</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="mb-5">
+                        <img src="{% static 'images/development.jpg' %}" alt="En développement" class="img-fluid" style="max-height: 200px;">
+                    </div>
+
+                    <a href="https://drive.google.com/file/d/1AbCdEfGhIjKlMnOpQrStUvWxYz/view?usp=sharing" class="btn btn-primary btn-lg w-100" download>
+                        Télécharger
+                    </a>
+
+
+                    <h2 class="fw-bold mb-4">Soyez parmi les premiers à être informés</h2>
+                    <p class="lead mb-5">
+                        Nous travaillons activement sur la version mobile ios d'InvertID. 
+                        En attendant, profitez de notre plateforme web complète et de notre application Android, ou en savoir plus sur le projet InvertID.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center gap-4 mb-5">
+                        <a href="{% url 'upload' %}" class="btn btn-primary btn-lg px-4 py-3">
+                            <i class="fas fa-camera me-2"></i> Essayer la version web
+                        </a>
+                        <a href="{% url 'understand' %}" class="btn btn-outline-primary btn-lg px-4 py-3">
+                            <i class="fas fa-book me-2"></i> Découvrir le projet
+                        </a>
+                    </div>
+                    
+                    <div class="card border-0 shadow-sm mt-5">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4"><i class="fas fa-envelope me-2 text-primary"></i>Recevez une notification</h4>
+                            <form class="row g-3">
+                                <div class="col-md-8">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Votre email">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        M'informer
+                                    </button>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                        <label class="form-check-label small text-muted" for="newsletter">
+                                            Je souhaite recevoir les actualités du projet
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps Preview -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Qu'allez vous decouvrir ?</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4 h-100">
+                        <div class="icon-circle bg-info text-white mx-auto mb-4">
+                            <i class="fas fa-mobile-alt fa-2x"></i>
+                        </div>
+                        <h4>Application mobile</h4>
+                        <p>Identification en temps réel directement depuis votre smartphone</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4 h-100">
+                        <div class="icon-circle bg-success text-white mx-auto mb-4">
+                            <i class="fas fa-map-marked-alt fa-2x"></i>
+                        </div>
+                        <h4>Mode offline</h4>
+                        <p>Obtenez des predictions de vos especes et ceux sans connection internet</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4 h-100">
+                        <div class="icon-circle bg-primary text-white mx-auto mb-4">
+                            <i class="fas fa-cloud-upload-alt fa-2x"></i>
+                        </div>
+                        <h4>Synchronisation</h4>
+                        <p>Toutes vos données accessibles sur tous vos appareils</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Styles -->
+<style>
+    .coming-soon-container {
+        position: relative;
+    }
+    
+    .hero-section {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        padding: 80px 0;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .btn-lg {
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .btn-primary {
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(13, 110, 253, 0.4);
+    }
+</style>
+
+<div class="navigation-tabs fixed-bottom bg-white border-top py-2">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <!-- Bouton Haut de page -->
+            <a href="#top" 
+               class="btn btn-tab rounded-pill mx-2 px-4 py-2"
+               data-bs-toggle="tooltip" 
+               title="Retour en haut de page">
+                <i class="fas fa-arrow-up me-2"></i>
+                <span class="d-none d-sm-inline">Haut de page</span>
+            </a>
+            
+            <!-- Bouton Accueil -->
+            <a href="{% url 'index' %}" 
+               class="btn btn-tab rounded-pill mx-2 px-4 py-2"
+               data-bs-toggle="tooltip" 
+               title="Retour à l'accueil">
+                <i class="fas fa-home me-2"></i>
+                <span class="d-none d-sm-inline">Accueil</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+{% endblock %}

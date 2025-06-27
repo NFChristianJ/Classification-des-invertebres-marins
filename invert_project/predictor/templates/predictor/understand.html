@@ -1,0 +1,626 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Navigation Principale -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.7), rgba(0,0,0,0.7)), url('{% static 'images/fond6.jpg' %}') no-repeat center center; background-size: cover; height: 60vh;">
+    <div class="container h-100 d-flex align-items-center">
+        <div class="hero-content text-center text-white w-100">
+            <h1 class="display-3 fw-bold mb-3">Comprendre InvertID</h1>
+            <p class="lead mb-4">Plongez dans la science derrière notre technologie</p>
+            <p class="lead mb-4">Découvriez le monde fascinant des invertébrés marins</p>
+            <p class="lead mb-4">écouvrant comment notre système fonctionne</p>
+        </div>
+    </div>
+</div>
+
+<!-- Section Introduction -->
+ <div>
+    <section>
+        <p></p>
+    </section>
+    <section id="introduction" class="mb-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h4 mb-0"><i class="fas fa-star me-2"></i> Introduction aux invertébrés marins</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="lead">Les invertébrés marins représentent plus de 90% de la biodiversité marine.</p>
+                        <p>Ces organismes sans colonne vertébrale jouent un rôle crucial dans les écosystèmes océaniques :</p>
+                        <ul class="fa-ul">
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Maintien des chaînes alimentaires</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Recyclage des nutriments</li>
+                            <li><span class="fa-li"><i class="fas fa-check-circle text-primary"></i></span>Construction des récifs coralliens</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{% static 'images/ecosystem.jpg' %}" alt="Écosystème marin" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ </div>
+
+<!-- Section Fonctionnement -->
+<section id="how-it-works" class="py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-3"><i class="fas fa-cogs text-primary me-2"></i>Comment ça marche ?</h2>
+                <p class="lead text-muted">Notre technologie en 4 étapes clés</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="process-visualization p-4 h-100">
+                    <img src="{% static 'images/process.jpg' %}" alt="Diagramme de processus" class="img-fluid rounded shadow">
+                </div>
+            </div>
+            <!-- Étape 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card h-100 text-center p-4">
+                    <div class="step-number bg-primary text-white">1</div>
+                    <div class="step-icon text-primary mt-3 mb-4">
+                        <i class="fas fa-camera fa-3x"></i>
+                    </div>
+                    <h3 class="h5">Capture d'image</h3>
+                    <p class="small">Uploader votre photo ou importer depuis une URL. Formats supportés : JPG, PNG, WEBP (max 10MB).</p>
+                </div>
+            </div>
+
+            <!-- Étape 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card h-100 text-center p-4">
+                    <div class="step-number bg-primary text-white">2</div>
+                    <div class="step-icon text-primary mt-3 mb-4">
+                        <i class="fas fa-brain fa-3x"></i>
+                    </div>
+                    <h3 class="h5">Analyse IA</h3>
+                    <p class="small">Notre modèle Vision Transformer extrait 1536 caractéristiques visuelles en 1.2 seconde.</p>
+                </div>
+            </div>
+
+            <!-- Étape 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card h-100 text-center p-4">
+                    <div class="step-number bg-primary text-white">3</div>
+                    <div class="step-icon text-primary mt-3 mb-4">
+                        <i class="fas fa-dna fa-3x"></i>
+                    </div>
+                    <h3 class="h5">Classification</h3>
+                    <p class="small">Comparaison avec notre base de 137 espèces référencées via un algorithme de Machine Learning.</p>
+                </div>
+            </div>
+
+            <!-- Étape 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card h-100 text-center p-4">
+                    <div class="step-number bg-primary text-white">4</div>
+                    <div class="step-icon text-primary mt-3 mb-4">
+                        <i class="fas fa-chart-bar fa-3x"></i>
+                    </div>
+                    <h3 class="h5">Résultats</h3>
+                    <p class="small">Visualisation des 5 meilleures correspondances avec scores de confiance et caractéristiques clés.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visualisation du processus -->
+        <div class="row mt-5 pt-5">
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-4"><i class="fas fa-microscope text-primary me-2"></i>Notre Approche Scientifique</h3>
+                <p>Contrairement aux solutions génériques, InvertID utilise une architecture spécialisée dans l'intelligence artificielle :</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle text-success me-2"></i> <strong>ViT-L-16</strong> pré-entraîné sur ImageNet-21k</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Fine-tuning sur des milliers d'images marines annotées</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Couche d'attention adaptée aux motifs biologiques</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Post-traitement taxonomique</li>
+                </ul>
+                <div class="accuracy-card mt-4 p-3 bg-light rounded">
+                    <div class="d-flex align-items-center">
+                        <div class="accuracy-percent display-4 fw-bold text-primary me-3">89%</div>
+                        <div class="accuracy-text small">Précision moyenne sur les espèces communes (sur des milliers d'images de tests)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- Guide visuel -->
+ <section id="visual-guide" class="mb-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-images me-2"></i> 
+                Guide des Invertébrés Marins
+                <span class="badge bg-light text-success ms-2">137 espèces</span>
+            </h2>
+        </div>
+        <div class="card-body">
+            <p class="text-muted mb-4">
+                Explorez notre sélection d'espèces marines fréquemment identifiées par notre système
+            </p>
+            
+            <div class="row g-4">
+                {% for species in featured_species %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="species-card card h-100 border-0 shadow-sm hover-effect">
+                        <div class="ratio ratio-16x9">
+                            <img src="{% static species.image %}" 
+                                 class="card-img-top object-fit-cover" 
+                                 alt="{{ species.name }}"
+                                 loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h5 text-success">{{ species.name }}</h3>
+                            <p class="card-text small">{{ species.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ species.detail_url }}" class="btn btn-sm btn-outline-success">
+                                    <i class="fas fa-binoculars me-1"></i> Observer
+                                </a>
+                                <span class="badge bg-success bg-opacity-10 text-success small">
+                                    <i class="fas fa-water me-1"></i> {{ forloop.counter }}.0
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'all_species' %}" class="btn btn-success px-4">
+                    <i class="fas fa-fish me-2"></i> Voir toutes les espèces
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Cas d'Usage -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-3"><i class="fas fa-flask text-primary me-2"></i>Applications Concrètes</h2>
+                <p class="lead text-muted">Comment les chercheurs utilisent notre technologie</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Cas 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="use-case-card h-100">
+                    <div class="use-case-header bg-primary text-white p-3">
+                        <h3 class="h5 mb-0"><i class="fas fa-water me-2"></i>Surveillance écologique</h3>
+                    </div>
+                    <div class="use-case-body p-3">
+                        <p class="small">"Grâce à InvertID, nous monitorons 5 sites côtiers avec 80% de gain de temps sur l'identification des espèces indicatrices."</p>
+                        <div class="user-info d-flex align-items-center mt-3">
+                            <img src="{% static 'images/users/user1.jpg' %}" class="rounded-circle me-2" width="40" alt="Dr. Martin">
+                            <div>
+                                <strong class="d-block">Dr. Mbam Nou</strong>
+                                <small class="text-muted">Université de Douala</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cas 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="use-case-card h-100">
+                    <div class="use-case-header bg-success text-white p-3">
+                        <h3 class="h5 mb-0"><i class="fas fa-graduation-cap me-2"></i>Pédagogie</h3>
+                    </div>
+                    <div class="use-case-body p-3">
+                        <p class="small">"Mes étudiants utilisent l'API pour leurs travaux de terrain. La visualisation des caractéristiques discriminantes est un outil pédagogique exceptionnel."</p>
+                        <div class="user-info d-flex align-items-center mt-3">
+                            <img src="{% static 'images/users/user2.jpg' %}" class="rounded-circle me-2" width="40" alt="Prof. Leclerc">
+                            <div>
+                                <strong class="d-block">Prof. Jacques Noah</strong>
+                                <small class="text-muted">Université de Yaoundé</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cas 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="use-case-card h-100">
+                    <div class="use-case-header bg-info text-white p-3">
+                        <h3 class="h5 mb-0"><i class="fas fa-book me-2"></i>Recherche</h3>
+                    </div>
+                    <div class="use-case-body p-3">
+                        <p class="small">"Nous avons découvert 3 nouveaux comportements alimentaires chez les nudibranches grâce à l'analyse automatique des milliers images."</p>
+                        <div class="user-info d-flex align-items-center mt-3">
+                            <img src="{% static 'images/users/user3.jpg' %}" class="rounded-circle me-2" width="40" alt="Dr. Chen">
+                            <div>
+                                <strong class="d-block">Dr. Noubissi Dobel </strong>
+                                <small class="text-muted">Université de Dschang</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section FAQ -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2 class="fw-bold mb-3"><i class="fas fa-question-circle text-primary me-2"></i>Questions Fréquentes</h2>
+                <p class="lead text-muted">Trouvez des réponses à vos interrogations</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="accordion" id="faqAccordion">
+                    <!-- Question 1 -->
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h3 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                <i class="fas fa-camera text-primary me-2"></i> Quels types d'images donnent les meilleurs résultats ?
+                            </button>
+                        </h3>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small">
+                                <p>Pour une identification optimale :</p>
+                                <ul>
+                                    <li>Privilégiez des images nettes avec une résolution minimale de 800x600px</li>
+                                    <li>Cadrez l'organisme au centre (remplissage >40% du cadre)</li>
+                                    <li>Évitez les reflets et turbidité excessive</li>
+                                    <li>Plusieurs angles (face, profil, dessous) augmentent la précision de 22%</li>
+                                </ul>
+                                <p class="mb-0">Exemple idéal : <a href="{% static 'images/image.jpg' %}" data-bs-toggle="modal" data-bs-target="#exampleModal">voir une image de référence</a></p>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h3 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                <i class="fas fa-database text-primary me-2"></i> Quelle est la source de vos données taxonomiques ?
+                            </button>
+                        </h3>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small">
+                                Notre référentiel s'appuie sur :
+                                <ul>
+                                    <li><strong>WoRMS</strong> (World Register of Marine Species) pour la classification</li>
+                                    <li><strong>OBIS</strong> pour la distribution géographique</li>
+                                    <li>Une base propriétaire de milliersd'images expertisées par notre réseau.</li>
+                                </ul>
+                                Les mises à jour taxonomiques sont appliquées trimestriellement.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="accordion-item mb-3 border-0 shadow-sm">
+                        <h3 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                <i class="fas fa-chart-line text-primary me-2"></i> Comment est calculé le score de confiance ?
+                            </button>
+                        </h3>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body small">
+                                Le score (0-100%) combine :
+                                <ul>
+                                    <li>Similarité visuelle (75% du score)</li>
+                                    <li>Cohérence géographique (15%)</li>
+                                    <li>Cohérence saisonnière (10%)</li>
+                                </ul>
+                                Un score >90% indique une correspondance quasi-certaine, 70-90% une forte probabilité.
+                                <div class="alert alert-info mt-2 small">
+                                    <i class="fas fa-info-circle me-2"></i> Les scores <70% nécessitent une validation experte.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Exemple Image -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Exemple d'image optimale</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="{% static 'images/image.jpg' %}" class="img-fluid" alt="Exemple">
+                <p class="small text-muted mt-2">Une etoile de mer - Photo prise avec un appareil étanche, lumière naturelle</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Glossaire -->
+<section id="glossary">
+    <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="h4 mb-0"><i class="fas fa-book-open me-2"></i> Glossaire des termes techniques</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Benthique</dt>
+                        <dd class="col-sm-8">Organisme vivant au fond des océans</dd>
+
+                        <dt class="col-sm-4">Cnidaires</dt>
+                        <dd class="col-sm-8">Groupe comprenant les méduses et coraux</dd>
+                    </dl>
+                </div>
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">Symbiose</dt>
+                        <dd class="col-sm-8">Relation mutuellement bénéfique entre espèces</dd>
+
+                        <dt class="col-sm-4">Zooxanthelles</dt>
+                        <dd class="col-sm-8">Algues microscopiques vivant en symbiose</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Styles spécifiques -->
+<style>
+    .step-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+    
+    .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-weight: bold;
+    }
+    
+    .process-visualization {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+    
+    .feature-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .feature-list li {
+        padding: 8px 0;
+    }
+    
+    .accuracy-card {
+        border-left: 4px solid #0d6efd;
+    }
+    
+    .use-case-card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+    }
+    
+    .use-case-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .use-case-header {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(13, 110, 253, 0.05);
+        color: #0d6efd;
+    }
+    
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+        
+        .step-card {
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

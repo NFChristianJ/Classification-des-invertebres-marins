@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero-section bg-primary text-white py-5" style="background: linear-gradient(rgba(0,45,90,0.8), rgba(0,0,0,0.8)), url('{% static "images/fond7.jpg" %}') no-repeat center center/cover;">
+    <div class="container text-center py-5">
+        <h1 class="display-4 fw-bold mb-3">Répertoire des Espèces</h1>
+        <p class="lead mb-4">{{ total_species }} espèces marines reconnues par notre IA</p>
+        
+        <!-- Barre de recherche -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" id="speciesSearch" class="form-control form-control-lg" placeholder="Rechercher une espèce...">
+                    <button class="btn btn-light" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filtres -->
+<div class="bg-light py-3 shadow-sm">
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-md-3">
+                <select class="form-select" id="taxonomicFilter">
+                    <option selected>Filtrer par famille</option>
+                    <option>Mollusques</option>
+                    <option>Étoile de mer</option>
+                    <option>Crustacés</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="habitatFilter">
+                    <option selected>Filtrer par habitat</option>
+                    <option>Récifs coralliens</option>
+                    <option>Fonds sableux</option>
+                    <option>Herbiers marins</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select" id="sizeFilter">
+                    <option selected>Toutes tailles</option>
+                    <option>Petit (< 5cm)</option>
+                    <option>Moyen (5-20cm)</option>
+                    <option>Grand (> 20cm)</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-outline-primary w-100" id="resetFilters">
+                    <i class="fas fa-undo me-2"></i>Réinitialiser
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card shadow-sm sticky-top" style="top: 20px;">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtres avancés</h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="fw-bold mt-3">Familles taxonomiques</h6>
+                    <div class="list-group list-group-flush">
+                        {% for family in families|slice:":5" %}
+                        <a href="#" class="list-group-item list-group-item-action small">{{ family }}</a>
+                        {% endfor %}
+                        {% if families|length > 5 %}
+                        <div class="collapse" id="moreFamilies">
+                            {% for family in families|slice:"5:" %}
+                            <a href="#" class="list-group-item list-group-item-action small">{{ family }}</a>
+                            {% endfor %}
+                        </div>
+                        <a href="#moreFamilies" class="small text-primary" data-bs-toggle="collapse">
+                            <i class="fas fa-chevron-down me-1"></i>Voir plus
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    <h6 class="fw-bold mt-4">Zones géographiques</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mediterraneanCheck">
+                        <label class="form-check-label small" for="mediterraneanCheck">Méditerranée</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="atlanticCheck">
+                        <label class="form-check-label small" for="atlanticCheck">Atlantique</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Species Grid -->
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="h4 mb-0">
+                    Espèces marines
+                    <span class="badge bg-primary rounded-pill">{{ total_species }}</span>
+                </h2>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-sort me-2"></i>Trier par
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Nom scientifique</a></li>
+                        <li><a class="dropdown-item" href="#">Famille taxonomique</a></li>
+                        <li><a class="dropdown-item" href="#">Fréquence d'observation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row g-4" id="speciesContainer">
+                {% for species in species_list %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 species-card" data-family="{{ species.family }}" data-habitat="{{ species.habitat }}">
+                    <div class="card h-100 border-0 shadow-sm hover-effect">
+                        <div class="position-relative">
+                            <img src="/{{ species.image }}" class="card-img-top" style="height: 180px; object-fit: cover;" alt="{{ species.name }}" loading="lazy">
+                            <span class="badge bg-success position-absolute top-0 end-0 m-2">
+                                <i class="fas fa-check-circle me-1"></i>Validé
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h6 mb-1">{{ species.scientific_name }}</h3>
+                            <p class="small text-muted mb-2">{{ species.common_name }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">
+                                    <i class="fas fa-tag me-1"></i>{{ species.family }}
+                                </span>
+                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
+                                        data-bs-target="#speciesModal" 
+                                        data-name="{{ species.scientific_name }}"
+                                        data-common="{{ species.common_name }}"
+                                        data-family="{{ species.family }}"
+                                        data-description="{{ species.description }}">
+                                    <i class="fas fa-eye me-1"></i>Détails
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <span aria-hidden="true">&laquo;&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Détails Espèce -->
+<div class="modal fade" id="speciesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="modalSpeciesImage" src="" class="img-fluid rounded mb-3" alt="">
+                        <div class="card mb-3">
+                            <div class="card-header bg-light fw-bold">
+                                <i class="fas fa-info-circle me-2"></i>Caractéristiques
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Famille:</span>
+                                    <span id="modalFamily" class="fw-bold"></span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Taille moyenne:</span>
+                                    <span class="fw-bold">15-20 cm</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span>Habitat:</span>
+                                    <span class="fw-bold">Récifs coralliens</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light fw-bold">
+                                <i class="fas fa-book me-2"></i>Description
+                            </div>
+                            <div class="card-body">
+                                <p id="modalDescription" class="card-text"></p>
+                                <hr>
+                                <h6 class="fw-bold"><i class="fas fa-chart-line me-2"></i>Statistiques</h6>
+                                <div class="progress mb-2" style="height: 20px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 92%;" 
+                                         aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                        Précision: 92%
+                                    </div>
+                                </div>
+                                <p class="small text-muted mb-0">Basé sur 1,245 observations validées</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Fermer
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-camera me-2"></i>Analyser cette espèce
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Styles -->
+<style>
+    .hero-section {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .species-card .card-img-top {
+        transition: transform 0.5s;
+    }
+    
+    .species-card:hover .card-img-top {
+        transform: scale(1.03);
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 100;
+    }
+    
+    @media (max-width: 992px) {
+        .sticky-top {
+            position: static;
+        }
+    }
+</style>
+
+<!-- Scripts -->
+<script>
+    // Gestion du modal
+    document.getElementById('speciesModal').addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const modal = this;
+        
+        modal.querySelector('#modalTitle').textContent = button.dataset.name;
+        modal.querySelector('#modalSpeciesImage').src = button.closest('.card').querySelector('img').src;
+        modal.querySelector('#modalFamily').textContent = button.dataset.family;
+        modal.querySelector('#modalDescription').textContent = button.dataset.description || "Description non disponible.";
+    });
+
+    // Filtrage des espèces
+    document.getElementById('speciesSearch').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        document.querySelectorAll('.species-card').forEach(card => {
+            const name = card.querySelector('h3').textContent.toLowerCase();
+            const commonName = card.querySelector('p.text-muted').textContent.toLowerCase();
+            card.style.display = (name.includes(searchTerm) || commonName.includes(searchTerm)) ? '' : 'none';
+        });
+    });
+
+    // Réinitialisation des filtres
+    document.getElementById('resetFilters').addEventListener('click', function() {
+        document.querySelectorAll('.species-card').forEach(card => {
+            card.style.display = '';
+        });
+        document.getElementById('speciesSearch').value = '';
+        document.getElementById('taxonomicFilter').selectedIndex = 0;
+        document.getElementById('habitatFilter').selectedIndex = 0;
+        document.getElementById('sizeFilter').selectedIndex = 0;
+    });
+</script>
+
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

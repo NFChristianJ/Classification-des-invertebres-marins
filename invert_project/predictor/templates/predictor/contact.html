@@ -1,0 +1,509 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3 active" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.85), rgba(0,0,0,0.85)), url('{% static 'images/fond10.jpg' %}') no-repeat center center/cover;">
+    <div class="container text-center text-white py-5">
+        <h1 class="display-4 fw-bold mb-4">Contactez l'équipe InvertID</h1>
+        <p class="lead mb-4">Une question ? Un partenariat ? Nous sommes à votre écoute</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#form" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-envelope me-2"></i>Envoyer un message
+            </a>
+            <a href="#team" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-users me-2"></i>Notre équipe
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation secondaire -->
+<nav class="sticky-top bg-white shadow-sm" style="top: 56px;">
+    <div class="container">
+        <ul class="nav nav-pills justify-content-center py-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#form">Formulaire</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#team">Équipe</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#info">Informations pratiques</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Contact Form -->
+<section id="form" class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Formulaire -->
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="pe-lg-5">
+                    <h2 class="mb-4"><i class="fas fa-envelope text-primary me-2"></i>Envoyez-nous un message</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form method="POST" class="mt-4">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">VOTRE NOM (OBLIGATOIRE)</label>
+                            <input type="text" name="name" class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">VOTRE E-MAIL (OBLIGATOIRE)</label>
+                            <input type="email" name="email" class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">CATÉGORIE (OBLIGATOIRE)</label>
+                            <select class="form-select form-select-lg" name="category" required>
+                                <option value="" selected disabled>—Veuillez choisir une option—</option>
+                                <option value="question">Question technique</option>
+                                <option value="collaboration">Proposition de collaboration</option>
+                                <option value="data">Demande de données</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">SUJET (OBLIGATOIRE)</label>
+                            <input type="text" name="subject" class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">VOTRE MESSAGE (OBLIGATOIRE)</label>
+                            <textarea name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary px-4 py-3 fw-bold">
+                            <i class="fas fa-paper-plane me-2"></i>ENVOYER LE MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Message d'accompagnement -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-lg h-100">
+                    <div class="card-body p-4">
+                        <h3 class="h4 mb-4"><i class="fas fa-info-circle text-primary me-2"></i>Pourquoi nous contacter ?</h3>
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0 text-primary me-3">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Envie de démarrer un projet avec InvertID ?</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0 text-primary me-3">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Une idée de partenariat ?</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0 text-primary me-3">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Ou simplement une question technique ?</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mt-4">
+                            <i class="fas fa-clock me-2"></i>Nous nous engageons à vous répondre sous 48h
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <p class="small text-muted mb-0">
+                                <i class="fas fa-users me-1"></i> L'équipe InvertID
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-users text-primary me-2"></i>Notre équipe</h2>
+            <p class="lead">Rencontrez les membres dédiés à votre accompagnement</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <img src="{% static 'images/team1.jpg' %}" class="rounded-circle mb-3" alt="Directeur scientifique" width="120" height="120" style="object-fit: cover;">
+                        <h4 class="h5 mb-2">Pr Nobert Tsopze</h4>
+                        <p class="text-primary fw-bold mb-3">Encadreur</p>
+                        <p class="small mb-4">Spécialiste en data-science data manining et apprentissage automatique</p>
+                        <a href="mailto:m.dupont@invertid.org" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <i class="fas fa-envelope me-1"></i>Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <img src="{% static 'images/team3.jpg' %}" class="rounded-circle mb-3" alt="Responsable technique" width="120" height="120" style="object-fit: cover;">
+                        <h4 class="h5 mb-2">Christian Noubissi</h4>
+                        <p class="text-primary fw-bold mb-3">Responsable technique</p>
+                        <p class="small mb-4">Expert en machine learning et développement d'applications IA pour l'environnement</p>
+                        <a href="mailto:j.kevin@invertid.org" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <i class="fas fa-envelope me-1"></i>Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <img src="{% static 'images/team2.jpg' %}" class="rounded-circle mb-3" alt="Chargée de projet" width="120" height="120" style="object-fit: cover;">
+                        <h4 class="h5 mb-2">Essuthi Ange</h4>
+                        <p class="text-primary fw-bold mb-3">Chargée de projet</p>
+                        <p class="small mb-4">Gestion des collaborations scientifiques et partenariats institutionnels</p>
+                        <a href="mailto:a.martin@invertid.org" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <i class="fas fa-envelope me-1"></i>Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Practical Info -->
+<section id="info" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-info-circle text-primary me-2"></i>Informations pratiques</h2>
+            <p class="lead">Comment nous joindre et nous rencontrer</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                            <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Adresse</h4>
+                        <address>
+                            Université de Yaoundé I<br>
+                            Faculté des Sciences<br>
+                            Yaoundé 3, Ngoa-Ekele<br>
+                            Cameroun
+                        </address>
+                        <a href="#" class="btn btn-sm btn-outline-primary mt-2">
+                            <i class="fas fa-map-marked-alt me-1"></i>Voir sur la carte
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                            <i class="fas fa-clock fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Horaires</h4>
+                        <p class="mb-1"><strong>Lundi-Vendredi</strong></p>
+                        <p>9h-12h / 14h-17h</p>
+                        <p class="small text-muted mt-3">Sur rendez-vous en dehors de ces horaires</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 hover-effect">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                            <i class="fas fa-phone fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Contacts</h4>
+                        <p class="mb-2">
+                            <i class="fas fa-envelope me-2 text-muted"></i>
+                            <a href="mailto:contact@invertid.org">contact@invertid.org</a>
+                        </p>
+                        <p class="mb-0">
+                            <i class="fas fa-phone-alt me-2 text-muted"></i>
+                            +237 6 98 50 00 00
+                        </p>
+                        <div class="mt-4 pt-2">
+                            <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container py-4">
+        <h2 class="mb-4">Prêt à échanger avec nous ?</h2>
+        <p class="lead mb-4">Nous sommes disponibles pour répondre à toutes vos questions sur notre projet</p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="#form" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-envelope me-2"></i>Envoyer un message
+            </a>
+            <a href="tel:+23769850000" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-phone me-2"></i>Nous appeler
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Contact (mis en avant) -->
+                <a href="#form" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Nous contacter">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-envelope mb-1"></i>
+                        <span class="nav-label">Contact</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section {
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hover-effect {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .nav-pills .nav-link.active {
+        background-color: var(--bs-primary);
+    }
+    
+    .form-control-lg, .form-select-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1.05rem;
+    }
+    
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            min-height: 350px;
+        }
+        
+        .display-4 {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Active le scrollspy pour la navigation secondaire
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-pills .nav-link');
+        
+        function updateActiveNav() {
+            const fromTop = window.scrollY + 150;
+            
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (
+                    section.offsetTop <= fromTop &&
+                    section.offsetTop + section.offsetHeight > fromTop
+                ) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    });
+
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}

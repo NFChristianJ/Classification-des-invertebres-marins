@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section avec Navigation -->
+<section class="hero-section text-center py-4 bg-light sticky-top">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <div class="d-flex align-items-center">
+                <img src="{% static 'images/exemple1.jpg' %}" alt="InvertID" style="height: 40px;" class="me-2">
+                <span class="fw-bold">InvertID</span>
+            </div>
+            
+            <!-- Menu avec icônes -->
+            <nav class="d-flex">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'upload' %}">
+                    <i class="fas fa-mobile-alt me-1"></i> UTILISER L'APPLICATION
+                </a>
+                <a href="{% url 'understand' %}" class="nav-link mx-3">
+                    <i class="fas fa-book me-1"></i> COMPRENDRE
+                </a>
+                <a href="#" class="nav-link mx-3">
+                    <i class="fas fa-users me-1"></i> PARTICIPER
+                </a>
+                <a href="#" class="nav-link mx-3">
+                    <i class="fas fa-file-alt me-1"></i> RESSOURCES
+                </a>
+                <a href="#" class="nav-link mx-3">
+                    <i class="fas fa-search me-1"></i> RECHERCHE
+                </a>
+                <a href="#" class="nav-link mx-3">
+                    <i class="fas fa-envelope me-1"></i> CONTACT
+                </a>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- Senconde Section -->
+<section class="hero-section text-center py-5 bg-light mb-5">
+    <div class="container">
+
+        <h2 class="display-4 mb-4">Identifiez les invertébrés marins</h2>
+        <p class="lead mb-4">Utilisez notre intelligence artificielle pour classifier les espèces marines</p>
+        <a href="{% url 'upload' %}" class="btn btn-primary btn-lg px-4">
+            <i class="fas fa-camera me-2"></i>Télécharger une image
+        </a>
+    </div>
+</section>
+
+<!-- Section Espèces Cibles -->
+<section class="species-section mb-5">
+    <div class="container">
+        <h3 class="text-center mb-4">Espèces cibles d'InvertID</h3>
+        
+        <div class="row">
+            <!-- Exemple d'espèce (à répéter) -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Actinoptilum molle</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Actinoptilum molle</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Actiniaria</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Bolocera_kerguelensis</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Praws</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <img src="{% static 'images/exemple1.jpg' %}" class="card-img-top" alt="Espèce marine">
+                    <div class="card-body">
+                        <h5 class="card-title">Seafan</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Triviella_spp</h5>
+                        <p class="card-text small">Description courte de l'espèce...</p>
+                    </div>
+                    <p class="lead mb-4">Classifier les invertébrés marins grace a notre application alimenté par l'intelligence artificielle</p>
+                    <a href="{% url 'upload' %}" class="btn btn-primary btn-lg px-4">
+                        <i class="fas fa-camera me-2"></i>Télécharger une image
+                     </a>
+                </div>
+            </div>
+            <!-- Ajoutez d'autres espèces ici -->
+        </div>
+    </div>
+</section>
+
+<!-- Section Partenaires -->
+<section class="partners-section py-4 bg-light">
+    <div class="container">
+        <h4 class="text-center mb-4">ILS FONT DÉJÀ PARTIE DE L'AVENTURE</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <img src="{% static 'images/partner1.png' %}" alt="Partenaire" class="img-fluid m-2" style="max-height: 50px;">
+            <!-- Ajoutez d'autres logos -->
+        </div>
+    </div>
+</section>
+
+<!-- Section Propulsé par -->
+<section class="partners-section py-4 bg-light">
+    <div class="container">
+        <h4 class="text-center mb-4">PROPULSÉ PAR</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <img src="{% static 'images/partner1.png' %}" alt="Partenaire" class="img-fluid m-2" style="max-height: 50px;">
+            <!-- Ajoutez d'autres logos -->
+        </div>
+    </div>
+</section>
+
+<!-- Retrouvé-nous sur -->
+<section class="partners-section py-4 bg-light">
+    <div class="container">
+        <h4 class="text-center mb-4">RETROUVÉ NOUS SUR</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <img src="{% static 'images/partner1.png' %}" alt="Partenaire" class="img-fluid m-2" style="max-height: 50px;">
+            <!-- Ajoutez d'autres logos -->
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="partners-section py-4 bg-light">
+    <div class="container">
+        <h4 class="text-center mb-4">CONTAT . CONDITIONS D'UTILISATION . MENTIONS LEGALE</h4>
+        <div class="d-flex flex-wrap justify-content-center">
+            <img src="{% static 'images/partner1.png' %}" alt="Partenaire" class="img-fluid m-2" style="max-height: 50px;">
+            <!-- Ajoutez d'autres logos -->
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Votre nom</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-2">
+                                <i class="fas fa-paper-plane me-2"></i>Envoyer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .vertical-process {
+            width: 300px;
+            position: relative;
+            padding: 15px 0;
+            height: calc(100vh - 20px);
+        }
+        .process-title {
+            text-align: center;
+            color: #005f73;
+            font-size: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            position: relative;
+        }
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            position: relative;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #005f73, #0a9396);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0,95,115,0.3);
+            z-index: 2;
+        }
+        .step-content {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            border-left: 3px solid #0a9396;
+        }
+        .step-title {
+            color: #005f73;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .step-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        .step-description {
+            color: #555;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+        .tech-badge {
+            display: inline-block;
+            background: #ee9b00;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 11px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        .process-line {
+            position: absolute;
+            left: 15px;
+            top: 40px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, #005f73, #94d2bd);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="vertical-process">
+        <h2 class="process-title">PROCESSUS DE CLASSIFICATION</h2>
+        <div class="process-line"></div>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3 class="step-title"><span class="step-icon">📤</span> Upload</h3>
+                <p class="step-description">Téléversement d'une photo d'invertébré marin via l'interface web ou mobile</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3 class="step-title"><span class="step-icon">🧠</span> Analyse IA</h3>
+                <p class="step-description">Extraction des caractéristiques visuelles par notre modèle Vision Transformer</p>
+                <span class="tech-badge">ViT Base 16</span>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3 class="step-title"><span class="step-icon">🔍</span> Comparaison</h3>
+                <p class="step-description">Matching avec notre base de 137 espèces d'invertébrés marins référencées</p>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h3 class="step-title"><span class="step-icon">📊</span> Résultats</h3>
+                <p class="step-description">Affichage des 5 meilleures correspondances avec scores de confiance détaillés.</p>
+                <span class="tech-badge">Seuil >70%</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

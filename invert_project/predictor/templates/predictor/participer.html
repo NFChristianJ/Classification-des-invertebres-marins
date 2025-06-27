@@ -1,0 +1,623 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.jpg' %}" alt="InvertID" height="40" class="me-2">
+            <span class="fw-bold d-none d-md-inline">InvertID</span>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'index' %}">
+                    <i class="fas fa-home-alt me-2">Accueil</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'understand' %}">
+                    <i class="fas fa-book me-1">COMPRENDRE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{%url 'participer' %}">
+                    <i class="fas fa-users me-1">PARTICIPER</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'ressources' %}">
+                    <i class="fas fa-mobile-alt me-1">RESSOURCES</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'contact' %}">
+                    <i class="fas fa-envelope me-1">CONTACT</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <a class="nav-link mx-2 mx-lg-3" href="{% url 'recherche' %}">
+                    <i class="fas fa-search me-1">RECHERCHE</i>
+                    <span class="d-none d-lg-inline"></span>
+                </a>
+                <!-- Sélecteur de langue -->
+                <div class="dropdown ms-3">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="languageDropdown" 
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="fi fi-fr me-1"></span> FR
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="fi fi-fr me-2"></span> Français
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=en">
+                                <span class="fi fi-gb me-2"></span> English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="?lang=es">
+                                <span class="fi fi-es me-2"></span> Español
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background: linear-gradient(rgba(0,45,90,0.85), rgba(0,0,0,0.85)), url('{% static 'images/fond8.jpg' %}') no-repeat center center/cover;">
+    <div class="container text-center text-white py-5">
+        <h1 class="display-4 fw-bold mb-4">Devenez acteur de la recherche marine</h1>
+        <p class="lead mb-4">Contribuez à l'amélioration de notre intelligence artificielle pour la protection des invertébrés marins</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#contributions" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-hands-helping me-2"></i>Contribuer
+            </a>
+            <a href="#donate" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-donate me-2"></i>Soutenir
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Navigation secondaire -->
+<nav class="sticky-top bg-white shadow-sm" style="top: 56px;">
+    <div class="container">
+        <ul class="nav nav-pills justify-content-center py-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#contributions">Contributions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#donate">Financement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#projects">Microprojets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#jobs">Recrutement</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Section Contributions -->
+<section id="contributions" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="pe-lg-5">
+                    <h2 class="mb-4"><i class="fas fa-hands-helping text-primary me-2"></i>Comment contribuer ?</h2>
+                    <p class="lead">Votre expertise et votre temps sont précieux pour faire avancer la recherche sur la biodiversité marine.</p>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0 text-primary me-4">
+                            <i class="fas fa-camera fa-2x"></i>
+                        </div>
+                        <div>
+                            <h4>Partagez vos observations</h4>
+                            <p>Soumettez vos photos d'invertébrés marins avec des métadonnées précises (lieu, date, conditions).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex mb-4">
+                        <div class="flex-shrink-0 text-primary me-4">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                        <div>
+                            <h4>Validez des identifications</h4>
+                            <p>Aidez à vérifier les classifications proposées par notre IA grâce à votre expertise.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 text-primary me-4">
+                            <i class="fas fa-code fa-2x"></i>
+                        </div>
+                        <div>
+                            <h4>Contribuez techniquement</h4>
+                            <p>Développeurs et scientifiques des données, améliorez nos algorithmes (projet open-source).</p>
+                        </div>
+                    </div>
+                    
+                    <center> 
+                        <a href="{% url 'upload' %}" class="btn btn-primary mt-4 px-4">
+                        <i class="fas fa-cloud-upload-alt me-2"></i>Telecharger une image
+                        </a>
+                    </center>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-lg overflow-hidden">
+                    <img src="{% static 'images/process.jpg' %}" class="card-img-top" alt="Processus de contribution">
+                    <div class="card-body bg-light">
+                        <h5 class="card-title">Notre processus de validation</h5>
+                        <ol class="mb-0">
+                            <li>Soumission de vos observations</li>
+                            <li>Vérification par notre équipe</li>
+                            <li>Intégration à la base d'apprentissage</li>
+                            <li>Amélioration continue du modèle</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Financement -->
+<section id="donate" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-donate text-primary me-2"></i>Soutenez financièrement</h2>
+            <p class="lead">Chaque francs contribue au développement de notre plateforme et à la protection des écosystèmes marins</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-primary text-white text-center py-3">
+                        <h3 class="h4 mb-0">Particulier</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="display-4 fw-bold text-primary mb-3">5000F</div>
+                        <p>Finance le traitement de 50 images pour notre base de données</p>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>Recevez notre newsletter</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Accès aux résultats et toutes nos données images</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">Faire un don</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-success text-white text-center py-3">
+                        <h3 class="h4 mb-0">Membre bienfaiteur</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="display-4 fw-bold text-success mb-3">15000F<small class="fs-6 text-muted">/mois</small></div>
+                        <p>Soutien récurrent pour le maintien des infrastructures</p>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>Tous les avantages précédents</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Accès privilégié aux données aux noms et leurs taxonomies</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Votre nom sur notre site</li>
+                        </ul>
+                        <button class="btn btn-success w-100">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-header bg-dark text-white text-center py-3">
+                        <h3 class="h4 mb-0">Entreprise</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="display-4 fw-bold text-dark mb-3">Sur mesure</div>
+                        <p>Partenariats stratégiques pour un impact à grande échelle</p>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i>Visibilité sur nos supports</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Rapports personnalisés</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Événements dédiés</li>
+                        </ul>
+                        <button class="btn btn-dark w-100">Nous contacter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-info mt-4 text-center">
+            <i class="fas fa-info-circle me-2"></i>Les dons sont éligibles à une réduction d'impôt de 50% au Cameroun
+        </div>
+    </div>
+</section>
+
+<!-- Section Microprojets -->
+<section id="projects" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-tasks text-primary me-2"></i>Microprojets de recherche</h2>
+            <p class="lead">Participez à nos initiatives scientifiques collaboratives</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <img src="{% static 'images/project-annotation.jpg' %}" class="card-img-top" alt="Annotation collaborative" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="badge bg-primary mb-2">En cours</div>
+                        <h4 class="h5">Annotation collaborative</h4>
+                        <p class="small">Aidez à labelliser notre base d'images pour améliorer la précision du modèle</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="progress w-100 me-3" style="height: 6px;">
+                                <div class="progress-bar bg-success" style="width: 65%"></div>
+                            </div>
+                            <span class="small text-muted">65%</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100 mt-2">Participer</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <img src="{% static 'images/project-expedition.jpg' %}" class="card-img-top" alt="Expéditions photo" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="badge bg-success mb-2">Nouveau</div>
+                        <h4 class="h5">Expéditions photo</h4>
+                        <p class="small">Participez à nos sorties pour photographier des espèces sous-marines</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="d-flex justify-content-between small mb-2">
+                            <span><i class="far fa-calendar me-1"></i>Juillet 2024</span>
+                            <span><i class="fas fa-users me-1"></i>12/20</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100">Voir calendrier</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <img src="{% static 'images/project-translation.jpg' %}" class="card-img-top" alt="Traduction" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="badge bg-warning text-dark mb-2">Besoins urgents</div>
+                        <h4 class="h5">Traduction multilingue</h4>
+                        <p class="small">Aidez à traduire l'application et les guides d'identification</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <div class="mb-2">
+                            <span class="badge bg-light text-dark me-1">Anglais</span>
+                            <span class="badge bg-light text-dark me-1">Espagnol</span>
+                            <span class="badge bg-light text-dark">Portugais</span>
+                        </div>
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100">Contribuer</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <img src="{% static 'images/project-custom.jpg' %}" class="card-img-top" alt="Votre projet" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <div class="badge bg-info mb-2">Ouvert</div>
+                        <h4 class="h5">Proposez votre projet</h4>
+                        <p class="small">Soumettez votre idée de microprojet en lien avec la biodiversité marine</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100">Soumettre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Partenaires -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-handshake text-primary me-2"></i>Nos partenaires</h2>
+            <p class="lead">Ils soutiennent notre initiative pour la protection des océans</p>
+        </div>
+        
+        <div class="row justify-content-center align-items-center g-4">
+            <div class="col-6 col-md-3">
+                <img src="{% static 'images/uy1.jpg' %}" alt="Université de Yaoundé 1" class="img-fluid grayscale-hover" style="max-height: 80px;">
+            </div>
+            <div class="col-6 col-md-3">
+                <img src="{% static 'images/enspy.jpg' %}" alt="ENSPY" class="img-fluid grayscale-hover" style="max-height: 80px;">
+            </div>
+            <div class="col-6 col-md-3">
+                <img src="{% static 'images/ud.jpg' %}" alt="IRD" class="img-fluid grayscale-hover" style="max-height: 80px;">
+            </div>
+            <div class="col-6 col-md-3">
+                <img src="{% static 'images/uy2.jpg' %}" alt="WWF" class="img-fluid grayscale-hover" style="max-height: 80px;">
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <div class="card shadow-sm border-0 d-inline-block">
+                <div class="card-body">
+                    <h3 class="h5">Devenez partenaire</h3>
+                    <p class="small mb-3">Votre organisation peut soutenir notre projet et bénéficier d'une visibilité</p>
+                    <a href="#" class="btn btn-sm btn-primary">Voir les avantages</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Recrutement -->
+<section id="jobs" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2><i class="fas fa-briefcase text-primary me-2"></i>Rejoignez notre équipe</h2>
+            <p class="lead">Postes ouverts et opportunités de collaboration</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h3 class="h5 mb-0">Stagiaire en Machine Learning</h3>
+                            <span class="badge bg-primary">6 mois</span>
+                        </div>
+                        <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Yaoundé ou télétravail</p>
+                        
+                        <h4 class="h6 mt-4">Mission :</h4>
+                        <ul class="small">
+                            <li>Amélioration des algorithmes de classification</li>
+                            <li>Optimisation des modèles Vision Transformer</li>
+                            <li>Analyse des performances</li>
+                        </ul>
+                        
+                        <h4 class="h6 mt-3">Profil recherché :</h4>
+                        <ul class="small">
+                            <li>Étudiant en IA/Data Science</li>
+                            <li>Maîtrise de Python et PyTorch</li>
+                            <li>Intérêt pour la biologie marine</li>
+                        </ul>
+                        
+                        <div class="mt-4">
+                            <a href="#" class="btn btn-outline-primary btn-sm">Voir l'offre complète</a>
+                            <a href="#" class="btn btn-primary btn-sm ms-2">Postuler</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm hover-effect">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h3 class="h5 mb-0">Coordinateur scientifique</h3>
+                            <span class="badge bg-success">CDD</span>
+                        </div>
+                        <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Yaoundé</p>
+                        
+                        <h4 class="h6 mt-4">Mission :</h4>
+                        <ul class="small">
+                            <li>Animation du réseau de contributeurs</li>
+                            <li>Validation scientifique des données</li>
+                            <li>Organisation d'expéditions</li>
+                        </ul>
+                        
+                        <h4 class="h6 mt-3">Profil recherché :</h4>
+                        <ul class="small">
+                            <li>Formation en biologie marine</li>
+                            <li>Expérience en sciences participatives</li>
+                            <li>Bonne capacité d'organisation</li>
+                        </ul>
+                        
+                        <div class="mt-4">
+                            <a href="#" class="btn btn-outline-primary btn-sm">Voir l'offre complète</a>
+                            <a href="#" class="btn btn-primary btn-sm ms-2">Postuler</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <div class="card bg-light border-0 p-4 d-inline-block">
+                <h3 class="h5">Vous ne trouvez pas votre poste ?</h3>
+                <p class="small mb-3">Envoyez-nous une candidature spontanée</p>
+                <a href="#" class="btn btn-primary btn-sm">Déposer une candidature</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container py-4">
+        <h2 class="mb-4">Prêt à faire la différence ?</h2>
+        <p class="lead mb-4">Rejoignez notre communauté de chercheurs, citoyens et protecteurs des océans</p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="#" class="btn btn-light btn-lg px-4">
+                <i class="fas fa-user-plus me-2"></i>S'inscrire
+            </a>
+            <a href="#" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-envelope me-2"></i>Nous contacter
+            </a>
+            <a href="#" class="btn btn-outline-light btn-lg px-4">
+                <i class="fas fa-file-download me-2"></i>Guide du contributeur
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .hover-effect {
+        transition: all 0.3s ease;
+    }
+    
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    .grayscale-hover {
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    
+    .grayscale-hover:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+    
+    .sticky-top {
+        position: sticky;
+        z-index: 1020;
+    }
+    
+    .nav-pills .nav-link.active {
+        background-color: var(--bs-primary);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            min-height: 350px;
+        }
+        
+        .display-4 {
+            font-size: 2.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Active le scrollspy pour la navigation secondaire
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.nav-pills .nav-link');
+        
+        function updateActiveNav() {
+            const fromTop = window.scrollY + 150;
+            
+            navLinks.forEach(link => {
+                const section = document.querySelector(link.getAttribute('href'));
+                if (
+                    section.offsetTop <= fromTop &&
+                    section.offsetTop + section.offsetHeight > fromTop
+                ) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+    });
+</script>
+
+<!-- Navigation flottante -->
+<div class="navigation-tabs fixed-bottom">
+    <div class="container">
+        <div class="nav-blur-container rounded-top-4 px-3 py-2">
+            <div class="d-flex justify-content-center">
+                <!-- Bouton Haut de page -->
+                <a href="#top" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour en haut de page">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-arrow-up mb-1"></i>
+                        <span class="nav-label">Haut</span>
+                    </div>
+                </a>
+                
+                <!-- Bouton Accueil -->
+                <a href="{% url 'index' %}" 
+                   class="btn btn-tab rounded-pill mx-2 px-4 py-2 shadow-sm"
+                   data-bs-toggle="tooltip" 
+                   title="Retour à l'accueil">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-home mb-1"></i>
+                        <span class="nav-label">Accueil</span>
+                    </div>
+                </a>
+
+                <!-- Bouton Upload (ajouté pour meilleure UX) -->
+                <a href="{% url 'upload' %}" 
+                   class="btn btn-primary rounded-pill mx-2 px-4 py-2 shadow-lg"
+                   data-bs-toggle="tooltip" 
+                   title="Analyser une image">
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="fas fa-camera mb-1"></i>
+                        <span class="nav-label">Analyser</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navigation-tabs {
+        z-index: 500;
+    }
+    
+    .nav-blur-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab {
+        background: white;
+        color: #495057;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-tab:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-tab .nav-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .btn-primary {
+        margin-top: -5px;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+</style>
+
+<script>
+    // Activation des tooltips Bootstrap
+    $(function () {
+        $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+{% endblock %}
