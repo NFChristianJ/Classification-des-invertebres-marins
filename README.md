@@ -51,8 +51,7 @@ https://drive.google.com/drive/folders/1vyNfWwcbszXT0pkpOazyXGaOeBMkt9v3?usp=sha
 ---
 
 vous pouvez egalement tester notre application directement en ligne sans telechargement en suivant le lien suivant:
-https://6332-41-202-207-3.ngrok-free.app
-
+https://36fa-102-244-43-193.ngrok-free.app
 ---
 
 ## Nature de la Solution proposée
@@ -94,8 +93,7 @@ Cependant, vous pourrez trouver l'ensemble du workflow ainsi que toutes nos exp�
 
 ---
 vous pouvez egalement tester notre application directement en ligne sans telechargement en suivant le lien suivant:
-https://6332-41-202-207-3.ngrok-free.app
-
+https://36fa-102-244-43-193.ngrok-free.app
 ---
 
 ## Collecte et analyses des donnees
@@ -168,7 +166,7 @@ Ensuite à partir d’un algorithme de reconnaissance elle fait une correspondan
 Ensuite elle affiche l’espèce la plus probable dans une liste d’espèce possible avec leurs différentes probabilités
 
 Pour tester l'application en ligne sans telechargement, vous pouvez suivre le lien suivant 
-https://6332-41-202-207-3.ngrok-free.app
+https://36fa-102-244-43-193.ngrok-free.app
 
 Notre model et notre application mobile sont disponible en telechargement a l'adresse:
 https://drive.google.com/drive/folders/1vyNfWwcbszXT0pkpOazyXGaOeBMkt9v3?usp=sharing
