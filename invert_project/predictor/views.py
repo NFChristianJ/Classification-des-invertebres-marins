@@ -33,7 +33,7 @@ model.eval()
 # Chargement des classes
 # --------------------------
 
-with open('C:/Users/Christian/Desktop/ClassificationInvertebresMarrins/class_index/class_indices.json', 'r') as f:
+with open('C:/Users/Christian/Desktop/Classification-des-invertebres-marins/class_index/class_indices.json', 'r') as f:
     class_indices = json.load(f)  # dictionnaire {nom_de_classe: index}
 
 # --------------------------

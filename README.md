@@ -1,6 +1,5 @@
 # 🐚 Application mobile pour la classification des invertébrés marins
 
-
 ## Application mobile pour la classification des invertébrés marins a partir des photos
 
 Projet devellopé dans le cadre de l'ue projet inf4258 année 2024-2025
@@ -14,6 +13,7 @@ Prof tsopze nobert
 ---
 
 ## Sommaire
+deploiement en local
 Probleme
 Presentation generale
 Solutions existantes
@@ -22,6 +22,47 @@ Processus de developpement
 Implementation
 Entrainement
 Evaluation
+
+### Deploiement local de l'application
+
+Pour tester l'application en local, suivez les étapes ci-dessous :
+
+### 1. Cloner le dépôt
+
+Clonez le dépôt Git en utilisant la commande suivante :
+git clone https://github.com/NFChristianJ/Classification-des-invertebres-marins.git
+
+Assurez-vous de naviguer vers le répertoire principal :
+cd Classification-des-invertebres-marins
+
+### 2. Télécharger les poids du modèle
+
+Rendez-vous sur le lien suivant pour télécharger les poids du modèle : 👉https://drive.google.com/drive/folders/1vyNfWwcbszXT0pkpOazyXGaOeBMkt9v3
+
+Placez le fichier model.pth dans un répertoire de votre choix sur votre machine.
+
+### 3. Modifier le chargement du modèle
+
+Dans le fichier invert_project/predictor/views.py, localisez le bloc suivant (juste après les importations) :
+
+model = timm.create_model('vit_base_patch16_224', pretrained=False)
+model.head = torch.nn.Linear(model.head.in_features, 137)
+model.load_state_dict(torch.load('F:/1234/models/model.pth', map_location=torch.device('cpu')))
+model.eval()
+
+🛠️ Remplacez le chemin 'F:/1234/models/model.pth' par l'emplacement réel du fichier model.pth que vous avez téléchargé.
+
+Par exemple : 
+model.load_state_dict(torch.load('/chemin/vers/votre/model.pth', map_location=torch.device('cpu')))
+
+### 4. Lancer l'application
+Dans le terminal, placez-vous dans le dossier invert_project :
+cd invert_project
+
+Puis lancez le serveur local avec :
+python manage.py runserver
+
+Ouvrez votre navigateur et accédez à l’adresse suivante pour utiliser l’application : 📍 http://127.0.0.1:8000/
 
 
 ## Informations générales
